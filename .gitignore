@@ -1,0 +1,6 @@
+_tmp*
+_tw_*.py
+_tw_*.js
+fetch_wx*.js
+.DS_Store
+Thumbs.db
