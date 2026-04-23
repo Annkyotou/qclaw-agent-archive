@@ -4,492 +4,111 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alex 知识库 | 个人内容归档</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg-primary: #0f172a;
-            --bg-secondary: #1e293b;
-            --bg-card: #334155;
-            --text-primary: #f8fafc;
-            --text-secondary: #94a3b8;
-            --accent: #3b82f6;
-            --accent-hover: #2563eb;
-            --border: #475569;
-            --success: #10b981;
-            --shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.3);
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.7;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
-        
-        /* Header */
-        header {
-            background: var(--bg-secondary);
-            border-bottom: 1px solid var(--border);
-            padding: 1.5rem 0;
-        }
-        
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-        
-        .logo-icon {
-            width: 48px;
-            height: 48px;
-            background: linear-gradient(135deg, var(--accent), #8b5cf6);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-        }
-        
-        .logo-text {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text-primary);
-        }
-        
-        .stats {
-            display: flex;
-            gap: 2rem;
-        }
-        
-        .stat-item {
-            text-align: center;
-        }
-        
-        .stat-value {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--accent);
-        }
-        
-        .stat-label {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-        
-        /* Search Section */
-        .search-section {
-            padding: 2rem 0;
-            border-bottom: 1px solid var(--border);
-        }
-        
-        .search-box {
-            position: relative;
-            margin-bottom: 1rem;
-        }
-        
-        .search-input {
-            width: 100%;
-            padding: 1rem 1rem 1rem 3rem;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            color: var(--text-primary);
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-        
-        .search-input:focus {
-            outline: none;
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-        }
-        
-        .search-icon {
-            position: absolute;
-            left: 1rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-secondary);
-        }
-        
-        .filters {
-            display: flex;
-            justify-content: center;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
-        
-        .filter-btn {
-            padding: 0.5rem 1rem;
-            background: transparent;
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            color: var(--text-secondary);
-            font-size: 0.875rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .filter-btn:hover,
-        .filter-btn.active {
-            background: var(--accent);
-            border-color: var(--accent);
-            color: white;
-        }
-        
-        /* Main Content */
-        main {
-            padding: 2rem 0;
-        }
-        
-        .section-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .section-title::before {
-            content: '';
-            width: 4px;
-            height: 24px;
-            background: var(--accent);
-            border-radius: 2px;
-        }
-        
-        /* Article Grid */
-        .article-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 1.5rem;
-        }
-        
-        .article-card {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        
-        .article-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow);
-            border-color: var(--accent);
-        }
-        
-        .card-image {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            background: var(--bg-card);
-        }
-        
-        .card-content {
-            padding: 1.25rem;
-        }
-        
-        .card-meta {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 0.75rem;
-            font-size: 0.75rem;
-        }
-        
-        .platform-badge {
-            display: flex;
-            align-items: center;
-            gap: 0.25rem;
-            padding: 0.25rem 0.5rem;
-            background: rgba(59, 130, 246, 0.1);
-            color: var(--accent);
-            border-radius: 4px;
-        }
-        
-        .date-badge {
-            color: var(--text-secondary);
-        }
-        
-        .card-title {
-            font-size: 1.125rem;
-            font-weight: 600;
-            margin-bottom: 0.75rem;
-            line-height: 1.4;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-        
-        .card-summary {
-            color: var(--text-secondary);
-            font-size: 0.875rem;
-            line-height: 1.6;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            margin-bottom: 1rem;
-        }
-        
-        .card-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-        
-        .tag {
-            padding: 0.25rem 0.5rem;
-            background: var(--bg-card);
-            border-radius: 4px;
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-        }
-        
-        /* Footer */
-        footer {
-            background: var(--bg-secondary);
-            border-top: 1px solid var(--border);
-            padding: 2rem 0;
-            text-align: center;
-            color: var(--text-secondary);
-            font-size: 0.875rem;
-        }
-        
-        footer a {
-            color: var(--accent);
-            text-decoration: none;
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .stats {
-                width: 100%;
-                justify-content: center;
-            }
-            
-            .article-grid {
-                grid-template-columns: 1fr;
-            }
-        }
+        :root { --bg-primary: #0f172a; --bg-secondary: #1e293b; --bg-card: #334155; --text-primary: #f8fafc; --text-secondary: #94a3b8; --accent: #3b82f6; --border: #475569; --success: #10b981; --shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.3); }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', 'Noto Sans SC', sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.7; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+        header { background: var(--bg-secondary); border-bottom: 1px solid var(--border); padding: 1.5rem 0; }
+        .header-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo { display: flex; align-items: center; gap: 1rem; }
+        .logo-icon { width: 48px; height: 48px; background: linear-gradient(135deg, var(--accent), #8b5cf6); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+        .logo-text { font-size: 1.5rem; font-weight: 700; }
+        .stats { display: flex; gap: 2rem; }
+        .stat-item { text-align: center; }
+        .stat-value { font-size: 1.5rem; font-weight: 700; color: var(--accent); }
+        .stat-label { font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase; }
+        .search-section { padding: 2rem 0; border-bottom: 1px solid var(--border); }
+        .search-input { width: 100%; padding: 1rem 1rem 1rem 3rem; background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; color: var(--text-primary); font-size: 1rem; }
+        .search-input:focus { outline: none; border-color: var(--accent); }
+        .search-icon { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-secondary); }
+        .search-box { position: relative; margin-bottom: 1rem; }
+        .filters { display: flex; justify-content: center; gap: 0.5rem; flex-wrap: wrap; }
+        .filter-btn { padding: 0.5rem 1rem; background: transparent; border: 1px solid var(--border); border-radius: 20px; color: var(--text-secondary); font-size: 0.875rem; cursor: pointer; transition: all 0.3s; }
+        .filter-btn:hover, .filter-btn.active { background: var(--accent); border-color: var(--accent); color: white; }
+        main { padding: 2rem 0; }
+        .section-title { font-size: 1.25rem; font-weight: 600; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+        .section-title::before { content: ''; width: 4px; height: 24px; background: var(--accent); border-radius: 2px; }
+        .article-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 1.5rem; }
+        .article-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; transition: all 0.3s; cursor: pointer; }
+        .article-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: var(--accent); }
+        .card-image { width: 100%; height: 180px; object-fit: cover; background: var(--bg-card); }
+        .card-content { padding: 1.25rem; }
+        .card-meta { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; font-size: 0.75rem; }
+        .platform-badge { display: flex; align-items: center; gap: 0.25rem; padding: 0.25rem 0.5rem; background: rgba(59, 130, 246, 0.1); color: var(--accent); border-radius: 4px; }
+        .date-badge { color: var(--text-secondary); }
+        .card-title { font-size: 1.125rem; font-weight: 600; margin-bottom: 0.75rem; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .card-summary { color: var(--text-secondary); font-size: 0.875rem; line-height: 1.6; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 1rem; }
+        .card-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .tag { padding: 0.25rem 0.5rem; background: var(--bg-card); border-radius: 4px; font-size: 0.75rem; color: var(--text-secondary); }
+        footer { background: var(--bg-secondary); border-top: 1px solid var(--border); padding: 2rem 0; text-align: center; color: var(--text-secondary); font-size: 0.875rem; }
+        footer a { color: var(--accent); text-decoration: none; }
+        @media (max-width: 768px) { .header-content { flex-direction: column; } .stats { justify-content: center; } .article-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <div class="logo-icon">📚</div>
-                    <div class="logo-text">Alex 知识库</div>
-                </div>
-                <div class="stats">
-                    <div class="stat-item">
-                        <div class="stat-value">7</div>
-                        <div class="stat-label">已归档</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-value">4</div>
-                        <div class="stat-label">分类</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-value">50+</div>
-                        <div class="stat-label">标签</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-    
-    <section class="search-section">
-        <div class="container">
-            <div class="search-box">
-                <span class="search-icon">🔍</span>
-                <input type="text" class="search-input" placeholder="搜索文章标题、内容或标签...">
-            </div>
-            <div class="filters">
-                <button class="filter-btn active">全部</button>
-                <button class="filter-btn">AI科技</button>
-                <button class="filter-btn">AI科研</button>
-                <button class="filter-btn">自动驾驶</button>
-                <button class="filter-btn">工程技术</button>
-                <button class="filter-btn">科研基金</button>
-            </div>
-        </div>
-    </section>
-    
-    <main>
-        <div class="container">
-            <h2 class="section-title">最近归档</h2>
-            <div class="article-grid">
-                <!-- ARC-20260423-007: UniDriveVLA -->
-                <article class="article-card" onclick="window.location.href='articles/ARC-20260423-007.html'">
-                    <img src="自动驾驶/理解、感知、规划三位一体！华科大&小米发布UniDriveVLA，打造统一自动驾驶新范式/images/img-01.jpg" alt="封面" class="card-image">
-                    <div class="card-content">
-                        <div class="card-meta">
-                            <span class="platform-badge"><span>📱</span>微信公众号</span>
-                            <span class="date-badge">2026-04-17</span>
-                        </div>
-                        <h3 class="card-title">理解、感知、规划三位一体！华科大&小米发布UniDriveVLA</h3>
-                        <p class="card-summary">华中科技大学与小米联合发布UniDriveVLA端到端自动驾驶系统，创新性地将理解、感知、规划三个核心模块统一建模，在多个权威benchmark上刷新SOTA记录。该架构通过视觉-语言-动作联合训练，实现了更强的场景理解能力和决策可解释性，为自动驾驶领域提供了新的技术范式。</p>
-                        <div class="card-tags">
-                            <span class="tag">自动驾驶</span>
-                            <span class="tag">VLA</span>
-                            <span class="tag">华科大</span>
-                            <span class="tag">小米</span>
-                        </div>
-                    </div>
-                </article>
+    <header><div class="container"><div class="header-content"><div class="logo"><div class="logo-icon">📚</div><div class="logo-text">Alex 知识库</div></div><div class="stats"><div class="stat-item"><div class="stat-value">7</div><div class="stat-label">已归档</div></div><div class="stat-item"><div class="stat-value">4</div><div class="stat-label">分类</div></div><div class="stat-item"><div class="stat-value">50+</div><div class="stat-label">标签</div></div></div></div></div></header>
+    <section class="search-section"><div class="container"><div class="search-box"><span class="search-icon">🔍</span><input type="text" class="search-input" placeholder="搜索文章标题、内容或标签..."></div><div class="filters"><button class="filter-btn active">全部</button><button class="filter-btn">AI科技</button><button class="filter-btn">AI科研</button><button class="filter-btn">自动驾驶</button><button class="filter-btn">工程技术</button><button class="filter-btn">科研基金</button></div></div></section>
+    <main><div class="container"><h2 class="section-title">最近归档</h2><div class="article-grid">
 
-                <!-- ARC-20260423-006: 土木工程图形摘要 -->
-                <article class="article-card" onclick="window.location.href='articles/ARC-20260423-006.html'">
-                    <img src="工程技术/土木工程领域期刊图形摘要欣赏（二十四）/images/img-01.jpg" alt="封面" class="card-image">
-                    <div class="card-content">
-                        <div class="card-meta">
-                            <span class="platform-badge"><span>📱</span>微信公众号</span>
-                            <span class="date-badge">2025-12-12</span>
-                        </div>
-                        <h3 class="card-title">土木工程领域期刊图形摘要欣赏（二十四）</h3>
-                        <p class="card-summary">精选土木工程领域SCI期刊的高质量图形摘要案例，涵盖结构工程、岩土工程、桥梁工程、材料力学等多个研究方向。通过分析这些优秀案例，展示如何用简洁直观的可视化方式呈现复杂的科研成果，帮助科研工作者提升论文图表设计能力和学术表达水平。</p>
-                        <div class="card-tags">
-                            <span class="tag">土木工程</span>
-                            <span class="tag">SCI期刊</span>
-                            <span class="tag">图形摘要</span>
-                        </div>
-                    </div>
-                </article>
+        <article class="article-card" onclick="window.location.href='articles/ARC-20260423-007.html'">
+            <img src="自动驾驶/unidrive-vla-hust-xiaomi/images/img-01.jpg" alt="封面" class="card-image">
+            <div class="card-content"><div class="card-meta"><span class="platform-badge"><span>📱</span>微信公众号</span><span class="date-badge">2026-04-17</span></div>
+            <h3 class="card-title">理解、感知、规划三位一体！华科大&小米发布UniDriveVLA</h3>
+            <p class="card-summary">华中科技大学与小米联合发布UniDriveVLA端到端自动驾驶系统，创新性地将理解、感知、规划三个核心模块统一建模在单一Transformer架构中。通过视觉-语言-动作联合训练实现更强的场景理解能力和决策可解释性，在nuScenes、CARLA等benchmark刷新SOTA。</p>
+            <div class="card-tags"><span class="tag">自动驾驶</span><span class="tag">VLA</span><span class="tag">华科大</span><span class="tag">小米</span></div></div>
+        </article>
 
-                <!-- ARC-20260423-005: 阿里世界模型 -->
-                <article class="article-card" onclick="window.location.href='articles/ARC-20260423-005.html'">
-                    <img src="AI科技/谷歌向左、李飞飞往右，阿里世界模型「快乐生蚝」杀出第三条路/images/img-01.jpg" alt="封面" class="card-image">
-                    <div class="card-content">
-                        <div class="card-meta">
-                            <span class="platform-badge"><span>📱</span>微信公众号</span>
-                            <span class="date-badge">2026-04-18</span>
-                        </div>
-                        <h3 class="card-title">谷歌向左、李飞飞往右，阿里世界模型「快乐生蚝」杀出第三条路</h3>
-                        <p class="card-summary">阿里巴巴达摩院发布世界模型重磅成果，代号"快乐生蚝"。与谷歌的扩散模型路线和李飞飞的空间智能路线不同，阿里探索出一条基于自回归预测的创新技术路径。该模型在视频生成、物理仿真、场景理解等任务上展现出强大能力，为多模态大模型的发展提供了新的技术方向。</p>
-                        <div class="card-tags">
-                            <span class="tag">世界模型</span>
-                            <span class="tag">阿里巴巴</span>
-                            <span class="tag">多模态</span>
-                        </div>
-                    </div>
-                </article>
+        <article class="article-card" onclick="window.location.href='articles/ARC-20260423-006.html'">
+            <img src="工程技术/civil-engineering-graphical-abstracts-24/images/img-01.jpg" alt="封面" class="card-image">
+            <div class="card-content"><div class="card-meta"><span class="platform-badge"><span>📱</span>微信公众号</span><span class="date-badge">2025-12-12</span></div>
+            <h3 class="card-title">土木工程领域期刊图形摘要欣赏（二十四）</h3>
+            <p class="card-summary">精选土木工程领域SCI期刊的高质量图形摘要案例第24期。图形摘要是科研成果可视化表达的重要形式，本期涵盖结构工程、岩土工程、桥梁工程、材料力学等多个研究方向，通过分析优秀案例帮助科研工作者提升论文图表设计能力。</p>
+            <div class="card-tags"><span class="tag">土木工程</span><span class="tag">SCI期刊</span><span class="tag">图形摘要</span></div></div>
+        </article>
 
-                <!-- ARC-20260423-004: 空间智能第一股 -->
-                <article class="article-card" onclick="window.location.href='articles/ARC-20260423-004.html'">
-                    <img src="AI科技/空间智能第一股，开盘暴涨171%！李飞飞押注的赛道，杭州六小龙之一跑通了/images/img-01.jpg" alt="封面" class="card-image">
-                    <div class="card-content">
-                        <div class="card-meta">
-                            <span class="platform-badge"><span>📱</span>微信公众号</span>
-                            <span class="date-badge">2026-04-17</span>
-                        </div>
-                        <h3 class="card-title">空间智能第一股，开盘暴涨171%！李飞飞押注的赛道</h3>
-                        <p class="card-summary">空间智能赛道迎来里程碑事件——杭州"六小龙"之一的空间智能公司成功上市，首日开盘暴涨171%。这是李飞飞等顶级AI科学家长期押注的前沿方向首次实现商业闭环。文章深入解析空间智能的技术内涵、核心难点、主要玩家格局，以及从学术研究到产业落地的关键突破。</p>
-                        <div class="card-tags">
-                            <span class="tag">空间智能</span>
-                            <span class="tag">李飞飞</span>
-                            <span class="tag">上市</span>
-                            <span class="tag">杭州六小龙</span>
-                        </div>
-                    </div>
-                </article>
+        <article class="article-card" onclick="window.location.href='articles/ARC-20260423-005.html'">
+            <img src="AI科技/alibaba-world-model-happy-oyster/images/img-01.jpg" alt="封面" class="card-image">
+            <div class="card-content"><div class="card-meta"><span class="platform-badge"><span>📱</span>微信公众号</span><span class="date-badge">2026-04-18</span></div>
+            <h3 class="card-title">谷歌向左、李飞飞往右，阿里世界模型「快乐生蚝」杀出第三条路</h3>
+            <p class="card-summary">阿里巴巴达摩院发布世界模型重磅成果，代号"快乐生蚝"。与谷歌的扩散模型路线和李飞飞的空间智能路线不同，阿里探索出基于自回归预测的创新技术路径。该模型在视频生成、物理仿真、场景理解等任务上展现强大能力。</p>
+            <div class="card-tags"><span class="tag">世界模型</span><span class="tag">阿里巴巴</span><span class="tag">多模态</span></div></div>
+        </article>
 
-                <!-- ARC-20260423-003: LingBot-Map -->
-                <article class="article-card" onclick="window.location.href='articles/ARC-20260423-003.html'">
-                    <img src="AI科研/LingBot-Map流式3D重建/images/img-01.jpg" alt="封面" class="card-image">
-                    <div class="card-content">
-                        <div class="card-meta">
-                            <span class="platform-badge"><span>📱</span>微信公众号</span>
-                            <span class="date-badge">2026-04-21</span>
-                        </div>
-                        <h3 class="card-title">狂跑一万帧丝滑不崩！拿着几十块单摄走一圈，整栋楼3D地图建好了</h3>
-                        <p class="card-summary">蚂蚁灵波开源LingBot-Map流式3D重建基础模型，仅需几十元的普通RGB摄像头即可实现20FPS实时3D建图。核心创新是"几何上下文注意力（GCA）"机制，可连续跑一万帧精度几乎不掉，甚至获得SLAM领域泰斗Andrew Davison破例点赞。该项目GitHub发布后引爆120万围观，为具身智能提供了低成本高可靠的空间感知方案。</p>
-                        <div class="card-tags">
-                            <span class="tag">SLAM</span>
-                            <span class="tag">3D重建</span>
-                            <span class="tag">具身智能</span>
-                            <span class="tag">蚂蚁灵波</span>
-                        </div>
-                    </div>
-                </article>
+        <article class="article-card" onclick="window.location.href='articles/ARC-20260423-004.html'">
+            <img src="AI科技/spatial-intelligence-ipo/images/img-01.jpg" alt="封面" class="card-image">
+            <div class="card-content"><div class="card-meta"><span class="platform-badge"><span>📱</span>微信公众号</span><span class="date-badge">2026-04-17</span></div>
+            <h3 class="card-title">空间智能第一股，开盘暴涨171%！李飞飞押注的赛道</h3>
+            <p class="card-summary">空间智能赛道迎来里程碑事件——杭州"六小龙"之一的空间智能公司成功上市，首日开盘暴涨171%。这是李飞飞等顶级AI科学家长期押注的前沿方向首次实现商业闭环。文章深入解析空间智能的技术内涵、核心难点、主要玩家格局。</p>
+            <div class="card-tags"><span class="tag">空间智能</span><span class="tag">李飞飞</span><span class="tag">上市</span><span class="tag">杭州六小龙</span></div></div>
+        </article>
 
-                <!-- ARC-20260423-002: Transformer+PINN -->
-                <article class="article-card" onclick="window.location.href='articles/ARC-20260423-002.html'">
-                    <img src="AI科研/Transformer-PINN论文合集/images/img-01.jpg" alt="封面" class="card-image">
-                    <div class="card-content">
-                        <div class="card-meta">
-                            <span class="platform-badge"><span>📱</span>微信公众号</span>
-                            <span class="date-badge">2026-03-31</span>
-                        </div>
-                        <h3 class="card-title">Transformer+PINN：登Nature子刊新突破！！</h3>
-                        <p class="card-summary">深入解析Transformer与物理信息神经网络（PINN）结合在Nature Machine Intelligence等顶刊发表的一系列研究突破。文章系统介绍PINN如何将物理方程嵌入神经网络损失函数、Transformer架构如何解决PINN在长序列建模上的瓶颈、以及这一交叉方向在计算流体力学、热传导、材料科学等领域的创新应用，为AI+科学计算研究者提供前沿参考。</p>
-                        <div class="card-tags">
-                            <span class="tag">Transformer</span>
-                            <span class="tag">PINN</span>
-                            <span class="tag">Nature</span>
-                            <span class="tag">科学计算</span>
-                        </div>
-                    </div>
-                </article>
+        <article class="article-card" onclick="window.location.href='articles/ARC-20260423-003.html'">
+            <img src="AI科研/lingbot-map-3d-reconstruction/images/img-01.jpg" alt="封面" class="card-image">
+            <div class="card-content"><div class="card-meta"><span class="platform-badge"><span>📱</span>微信公众号</span><span class="date-badge">2026-04-21</span></div>
+            <h3 class="card-title">狂跑一万帧丝滑不崩！拿着几十块单摄走一圈，整栋楼3D地图建好了</h3>
+            <p class="card-summary">蚂蚁灵波开源LingBot-Map流式3D重建基础模型，仅需几十元的普通RGB摄像头即可实现20FPS实时3D建图。核心创新是"几何上下文注意力（GCA）"机制，可连续跑一万帧精度几乎不掉，获SLAM泰斗Andrew Davison破例点赞。</p>
+            <div class="card-tags"><span class="tag">SLAM</span><span class="tag">3D重建</span><span class="tag">具身智能</span><span class="tag">蚂蚁灵波</span></div></div>
+        </article>
 
-                <!-- ARC-20260423-001: 国自然申请书 -->
-                <article class="article-card" onclick="window.location.href='articles/ARC-20260423-001.html'">
-                    <img src="科研基金/images/content-01.png" alt="封面" class="card-image">
-                    <div class="card-content">
-                        <div class="card-meta">
-                            <span class="platform-badge"><span>📱</span>微信公众号</span>
-                            <span class="date-badge">2026-03-17</span>
-                        </div>
-                        <h3 class="card-title">分享一篇2026国自然申请书！</h3>
-                        <p class="card-summary">2026版国家自然科学基金申请书范文分享，题目为"数字孪生信道赋能低空智联网高可靠通信研究"。申请书涵盖DTCLAIN框架设计、通感一体化技术路线、信道大模型应用等核心创新点，结构完整、论证严密、图表规范。全文19页高清图片已完整归档，可供科研工作者申请国自然、省基金等项目时参考学习。</p>
-                        <div class="card-tags">
-                            <span class="tag">国自然</span>
-                            <span class="tag">NSFC</span>
-                            <span class="tag">低空智联网</span>
-                            <span class="tag">申请书</span>
-                        </div>
-                    </div>
-                </article>
-            </div>
-        </div>
-    </main>
-    
-    <footer>
-        <div class="container">
-            <p>由 <a href="#">Alex</a> 自动归档生成 · 最后更新 2026-04-23</p>
-            <p style="margin-top: 0.5rem; opacity: 0.7;">所有内容仅供个人学习研究使用</p>
-        </div>
-    </footer>
+        <article class="article-card" onclick="window.location.href='articles/ARC-20260423-002.html'">
+            <img src="AI科研/transformer-pinn-papers/images/img-01.jpg" alt="封面" class="card-image">
+            <div class="card-content"><div class="card-meta"><span class="platform-badge"><span>📱</span>微信公众号</span><span class="date-badge">2026-03-31</span></div>
+            <h3 class="card-title">Transformer+PINN：登Nature子刊新突破！！</h3>
+            <p class="card-summary">深入解析Transformer与物理信息神经网络（PINN）结合在Nature Machine Intelligence等顶刊发表的研究突破。PINN将物理方程残差嵌入神经网络损失函数，Transformer架构解决了长序列建模瓶颈，在计算流体力学、热传导等领域有创新应用。</p>
+            <div class="card-tags"><span class="tag">Transformer</span><span class="tag">PINN</span><span class="tag">Nature</span><span class="tag">科学计算</span></div></div>
+        </article>
+
+        <article class="article-card" onclick="window.location.href='articles/ARC-20260423-001.html'">
+            <img src="科研基金/images/content-01.png" alt="封面" class="card-image">
+            <div class="card-content"><div class="card-meta"><span class="platform-badge"><span>📱</span>微信公众号</span><span class="date-badge">2026-03-17</span></div>
+            <h3 class="card-title">分享一篇2026国自然申请书！</h3>
+            <p class="card-summary">2026版国家自然科学基金申请书范文分享，题目为"数字孪生信道赋能低空智联网高可靠通信研究"。申请书结构完整、论证严密、图表规范，涵盖DTCLAIN框架设计、通感一体化技术路线等核心创新点，全文19页高清内容已完整归档。</p>
+            <div class="card-tags"><span class="tag">国自然</span><span class="tag">NSFC</span><span class="tag">低空智联网</span><span class="tag">申请书</span></div></div>
+        </article>
+
+    </div></div></main>
+    <footer><div class="container"><p>由 <a href="#">Alex</a> 自动归档生成 · 最后更新 2026-04-23</p><p style="margin-top: 0.5rem; opacity: 0.7;">所有内容仅供个人学习研究使用</p></div></footer>
 </body>
 </html>
