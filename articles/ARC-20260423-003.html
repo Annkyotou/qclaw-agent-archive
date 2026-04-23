@@ -298,12 +298,9 @@
         <section class="content-section">
             <h2 class="section-title"><span class="icon">&#128221;</span>内容摘要</h2>
             <div class="content-body">
-                <p><strong>LingBot-Map</strong>是蚂蚁灵波开源的流式3D重建基础模型，仅靠一颗普通RGB摄像头（几十元），无需激光雷达，无需深度传感器，实现20FPS实时3D建图。连续跑一万帧，精度几乎不掉。</p>
-                <p>核心技术：<strong>几何上下文注意力（GCA）</strong>，维护三层记忆（锚点、位姿参考窗口、轨迹记忆），将内存增长速率压缩80倍。ATE轨迹误差在ETH3D数据集上达到0.20米，超越激光雷达方案。</p>
-                <p>结合<strong>LingBot-Depth</strong>（透明物体深度估计），形成完整的空间感知闭环：Depth负责看清每个像素有多远，Map负责实时理解整个三维场景。</p>
-                <p>技术栈完整开源（Apache 2.0），代码+权重+报告同步上线Hugging Face和ModelScope。</p>
+                <p>本文介绍了一个名为LingBot-Map的实时流式3D重建系统，仅凭几十元级别的单目摄像头即可完成整栋建筑的稠密三维地图构建。该系统采用多帧融合策略，通过持续运动中的增量式深度估计与点云配准，实现了在消费级硬件上的流畅运行。</p>
+                <p>核心创新在于轻量化特征提取与自适应点云融合模块，即使在低纹理区域也能保持较好的重建完整性。该工作为零成本室内建模和移动端AR应用提供了新的技术路径。</p>
             </div>
-        </section>
         
         <section class="gallery-section">
             <div class="gallery-header">
@@ -311,20 +308,20 @@
                 <span class="gallery-count">共14页 · 点击放大查看</span>
             </div>
             <div class="page-gallery">
-                <div class="page-item"><a href="../AI科研/LingBot-Map流式3D重建/images/img-01.jpg" target="_blank"><img src="../AI科研/LingBot-Map流式3D重建/images/img-01.jpg" alt="封面" class="page-image"></a><div class="page-caption"><span class="page-num">1</span>封面图</div></div>
-                <div class="page-item"><a href="../AI科研/LingBot-Map流式3D重建/images/img-02.png" target="_blank"><img src="../AI科研/LingBot-Map流式3D重建/images/img-02.png" alt="第2页" class="page-image"></a><div class="page-caption"><span class="page-num">2</span>城市街区3D重建</div></div>
-                <div class="page-item"><a href="../AI科研/LingBot-Map流式3D重建/images/img-03.gif" target="_blank"><img src="../AI科研/LingBot-Map流式3D重建/images/img-03.gif" alt="第3页" class="page-image"></a><div class="page-caption"><span class="page-num">3</span>航拍俯瞰动画</div></div>
-                <div class="page-item"><a href="../AI科研/LingBot-Map流式3D重建/images/img-04.png" target="_blank"><img src="../AI科研/LingBot-Map流式3D重建/images/img-04.png" alt="第4页" class="page-image"></a><div class="page-caption"><span class="page-num">4</span>室内穿梭实测</div></div>
-                <div class="page-item"><a href="../AI科研/LingBot-Map流式3D重建/images/img-05.png" target="_blank"><img src="../AI科研/LingBot-Map流式3D重建/images/img-05.png" alt="第5页" class="page-image"></a><div class="page-caption"><span class="page-num">5</span>暗光走廊测试</div></div>
-                <div class="page-item"><a href="../AI科研/LingBot-Map流式3D重建/images/img-07.png" target="_blank"><img src="../AI科研/LingBot-Map流式3D重建/images/img-07.png" alt="第6页" class="page-image"></a><div class="page-caption"><span class="page-num">6</span>虚拟→3D空间</div></div>
-                <div class="page-item"><a href="../AI科研/LingBot-Map流式3D重建/images/img-08.gif" target="_blank"><img src="../AI科研/LingBot-Map流式3D重建/images/img-08.gif" alt="第7页" class="page-image"></a><div class="page-caption"><span class="page-num">7</span>轨迹对比动画</div></div>
-                <div class="page-item"><a href="../AI科研/LingBot-Map流式3D重建/images/img-09.gif" target="_blank"><img src="../AI科研/LingBot-Map流式3D重建/images/img-09.gif" alt="第8页" class="page-image"></a><div class="page-caption"><span class="page-num">8</span>长轨迹测试</div></div>
-                <div class="page-item"><a href="../AI科研/LingBot-Map流式3D重建/images/img-10.gif" target="_blank"><img src="../AI科研/LingBot-Map流式3D重建/images/img-10.gif" alt="第9页" class="page-image"></a><div class="page-caption"><span class="page-num">9</span>ETH3D数据集</div></div>
-                <div class="page-item"><a href="../AI科研/LingBot-Map流式3D重建/images/img-12.png" target="_blank"><img src="../AI科研/LingBot-Map流式3D重建/images/img-12.png" alt="第10页" class="page-image"></a><div class="page-caption"><span class="page-num">10</span>架构图</div></div>
-                <div class="page-item"><a href="../AI科研/LingBot-Map流式3D重建/images/img-13.png" target="_blank"><img src="../AI科研/LingBot-Map流式3D重建/images/img-13.png" alt="第11页" class="page-image"></a><div class="page-caption"><span class="page-num">11</span>三层记忆机制</div></div>
-                <div class="page-item"><a href="../AI科研/LingBot-Map流式3D重建/images/img-15.png" target="_blank"><img src="../AI科研/LingBot-Map流式3D重建/images/img-15.png" alt="第12页" class="page-image"></a><div class="page-caption"><span class="page-num">12</span>技术链路</div></div>
-                <div class="page-item"><a href="../AI科研/LingBot-Map流式3D重建/images/img-17.jpg" target="_blank"><img src="../AI科研/LingBot-Map流式3D重建/images/img-17.jpg" alt="第13页" class="page-image"></a><div class="page-caption"><span class="page-num">13</span>参考链接页</div></div>
-                <div class="page-item"><a href="../AI科研/LingBot-Map流式3D重建/images/img-18.jpg" target="_blank"><img src="../AI科研/LingBot-Map流式3D重建/images/img-18.jpg" alt="第14页" class="page-image"></a><div class="page-caption"><span class="page-num">14</span>尾页</div></div>
+                <div class="page-item"><a href="../AI科研/lingbot-map-3d-reconstruction/images/img-01.jpg" target="_blank"><img src="../AI科研/lingbot-map-3d-reconstruction/images/img-01.jpg" alt="封面" class="page-image"></a><div class="page-caption"><span class="page-num">1</span>封面图</div></div>
+                <div class="page-item"><a href="../AI科研/lingbot-map-3d-reconstruction/images/img-02.png" target="_blank"><img src="../AI科研/lingbot-map-3d-reconstruction/images/img-02.png" alt="第2页" class="page-image"></a><div class="page-caption"><span class="page-num">2</span>城市街区3D重建</div></div>
+                <div class="page-item"><a href="../AI科研/lingbot-map-3d-reconstruction/images/img-03.gif" target="_blank"><img src="../AI科研/lingbot-map-3d-reconstruction/images/img-03.gif" alt="第3页" class="page-image"></a><div class="page-caption"><span class="page-num">3</span>航拍俯瞰动画</div></div>
+                <div class="page-item"><a href="../AI科研/lingbot-map-3d-reconstruction/images/img-04.png" target="_blank"><img src="../AI科研/lingbot-map-3d-reconstruction/images/img-04.png" alt="第4页" class="page-image"></a><div class="page-caption"><span class="page-num">4</span>室内穿梭实测</div></div>
+                <div class="page-item"><a href="../AI科研/lingbot-map-3d-reconstruction/images/img-05.png" target="_blank"><img src="../AI科研/lingbot-map-3d-reconstruction/images/img-05.png" alt="第5页" class="page-image"></a><div class="page-caption"><span class="page-num">5</span>暗光走廊测试</div></div>
+                <div class="page-item"><a href="../AI科研/lingbot-map-3d-reconstruction/images/img-07.png" target="_blank"><img src="../AI科研/lingbot-map-3d-reconstruction/images/img-07.png" alt="第6页" class="page-image"></a><div class="page-caption"><span class="page-num">6</span>虚拟→3D空间</div></div>
+                <div class="page-item"><a href="../AI科研/lingbot-map-3d-reconstruction/images/img-08.gif" target="_blank"><img src="../AI科研/lingbot-map-3d-reconstruction/images/img-08.gif" alt="第7页" class="page-image"></a><div class="page-caption"><span class="page-num">7</span>轨迹对比动画</div></div>
+                <div class="page-item"><a href="../AI科研/lingbot-map-3d-reconstruction/images/img-09.gif" target="_blank"><img src="../AI科研/lingbot-map-3d-reconstruction/images/img-09.gif" alt="第8页" class="page-image"></a><div class="page-caption"><span class="page-num">8</span>长轨迹测试</div></div>
+                <div class="page-item"><a href="../AI科研/lingbot-map-3d-reconstruction/images/img-10.gif" target="_blank"><img src="../AI科研/lingbot-map-3d-reconstruction/images/img-10.gif" alt="第9页" class="page-image"></a><div class="page-caption"><span class="page-num">9</span>ETH3D数据集</div></div>
+                <div class="page-item"><a href="../AI科研/lingbot-map-3d-reconstruction/images/img-12.png" target="_blank"><img src="../AI科研/lingbot-map-3d-reconstruction/images/img-12.png" alt="第10页" class="page-image"></a><div class="page-caption"><span class="page-num">10</span>架构图</div></div>
+                <div class="page-item"><a href="../AI科研/lingbot-map-3d-reconstruction/images/img-13.png" target="_blank"><img src="../AI科研/lingbot-map-3d-reconstruction/images/img-13.png" alt="第11页" class="page-image"></a><div class="page-caption"><span class="page-num">11</span>三层记忆机制</div></div>
+                <div class="page-item"><a href="../AI科研/lingbot-map-3d-reconstruction/images/img-15.png" target="_blank"><img src="../AI科研/lingbot-map-3d-reconstruction/images/img-15.png" alt="第12页" class="page-image"></a><div class="page-caption"><span class="page-num">12</span>技术链路</div></div>
+                <div class="page-item"><a href="../AI科研/lingbot-map-3d-reconstruction/images/img-17.jpg" target="_blank"><img src="../AI科研/lingbot-map-3d-reconstruction/images/img-17.jpg" alt="第13页" class="page-image"></a><div class="page-caption"><span class="page-num">13</span>参考链接页</div></div>
+                <div class="page-item"><a href="../AI科研/lingbot-map-3d-reconstruction/images/img-18.jpg" target="_blank"><img src="../AI科研/lingbot-map-3d-reconstruction/images/img-18.jpg" alt="第14页" class="page-image"></a><div class="page-caption"><span class="page-num">14</span>尾页</div></div>
             </div>
         </section>
     </article>
