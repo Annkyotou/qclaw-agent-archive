@@ -17,14 +17,19 @@
             --accent-hover: #2563eb;
             --border: #475569;
             --success: #10b981;
+            --warning: #f59e0b;
         }
+        
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         body {
             font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
             background: var(--bg-primary);
             color: var(--text-primary);
             line-height: 1.7;
         }
+        
+        /* Navigation */
         nav {
             background: var(--bg-secondary);
             border-bottom: 1px solid var(--border);
@@ -33,14 +38,16 @@
             top: 0;
             z-index: 100;
         }
+        
         .nav-content {
-            max-width: 900px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 0 1.5rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
+        
         .back-link {
             display: flex;
             align-items: center;
@@ -50,7 +57,9 @@
             font-size: 0.875rem;
             transition: color 0.3s;
         }
+        
         .back-link:hover { color: var(--accent); }
+        
         .archive-badge {
             display: flex;
             align-items: center;
@@ -63,17 +72,21 @@
             font-size: 0.75rem;
             font-weight: 500;
         }
+        
+        /* Header */
         .article-header {
-            max-width: 900px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 3rem 1.5rem 2rem;
         }
+        
         .meta-bar {
             display: flex;
             flex-wrap: wrap;
             gap: 1rem;
             margin-bottom: 1.5rem;
         }
+        
         .meta-item {
             display: flex;
             align-items: center;
@@ -81,6 +94,7 @@
             font-size: 0.875rem;
             color: var(--text-secondary);
         }
+        
         .platform-tag {
             padding: 0.25rem 0.75rem;
             background: rgba(59, 130, 246, 0.1);
@@ -88,17 +102,20 @@
             border-radius: 4px;
             font-weight: 500;
         }
+        
         .article-title {
-            font-size: 1.75rem;
+            font-size: 2rem;
             font-weight: 700;
             line-height: 1.3;
             margin-bottom: 1.5rem;
         }
+        
         .article-tags {
             display: flex;
             flex-wrap: wrap;
             gap: 0.5rem;
         }
+        
         .article-tag {
             padding: 0.375rem 0.75rem;
             background: var(--bg-card);
@@ -106,11 +123,14 @@
             font-size: 0.75rem;
             color: var(--text-secondary);
         }
+        
+        /* Content */
         .article-content {
-            max-width: 900px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 0 1.5rem 3rem;
         }
+        
         .content-section {
             background: var(--bg-secondary);
             border: 1px solid var(--border);
@@ -118,6 +138,7 @@
             padding: 2rem;
             margin-bottom: 1.5rem;
         }
+        
         .section-title {
             font-size: 1.25rem;
             font-weight: 600;
@@ -126,33 +147,91 @@
             align-items: center;
             gap: 0.5rem;
         }
+        
         .section-title .icon { font-size: 1.5rem; }
+        
         .info-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 1rem;
         }
+        
         .info-item {
             display: flex;
             flex-direction: column;
             gap: 0.25rem;
         }
+        
         .info-label {
             font-size: 0.75rem;
             color: var(--text-secondary);
             text-transform: uppercase;
             letter-spacing: 0.05em;
         }
-        .info-value { font-size: 0.9375rem; color: var(--text-primary); }
-        .info-value a { color: var(--accent); text-decoration: none; }
+        
+        .info-value {
+            font-size: 0.9375rem;
+            color: var(--text-primary);
+        }
+        
+        .info-value a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+        
         .info-value a:hover { text-decoration: underline; }
+        
+        /* Content Body */
         .content-body {
             font-size: 1rem;
-            line-height: 1.9;
+            line-height: 1.8;
+        }
+        
+        .content-body h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin: 2rem 0 1rem;
+            color: var(--accent);
+        }
+        
+        .content-body p {
+            margin-bottom: 1rem;
             color: var(--text-secondary);
         }
-        .content-body p { margin-bottom: 1rem; }
+        
         .content-body strong { color: var(--text-primary); }
+        
+        .content-body ul {
+            margin: 1rem 0;
+            padding-left: 1.5rem;
+            color: var(--text-secondary);
+        }
+        
+        .content-body li { margin-bottom: 0.5rem; }
+        
+        /* Table */
+        .innovation-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+        
+        .innovation-table th,
+        .innovation-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .innovation-table th {
+            background: var(--bg-card);
+            font-weight: 600;
+            color: var(--accent);
+        }
+        
+        .innovation-table td { color: var(--text-secondary); }
+        
+        /* Gallery */
         .gallery-section {
             background: var(--bg-secondary);
             border: 1px solid var(--border);
@@ -160,23 +239,32 @@
             padding: 2rem;
             margin-bottom: 1.5rem;
         }
+        
         .gallery-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 1.5rem;
         }
-        .gallery-count { font-size: 0.875rem; color: var(--text-secondary); }
+        
+        .gallery-count {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+        
         .page-gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 1.5rem;
         }
+        
         .page-item {
             background: var(--bg-card);
             border-radius: 12px;
             overflow: hidden;
+            break-inside: avoid;
         }
+        
         .page-image {
             width: 100%;
             height: auto;
@@ -184,7 +272,9 @@
             cursor: zoom-in;
             transition: transform 0.3s;
         }
+        
         .page-image:hover { transform: scale(1.02); }
+        
         .page-caption {
             padding: 1rem;
             font-size: 0.875rem;
@@ -192,6 +282,7 @@
             text-align: center;
             background: rgba(0,0,0,0.2);
         }
+        
         .page-num {
             display: inline-block;
             background: var(--accent);
@@ -205,8 +296,10 @@
             font-weight: 600;
             margin-right: 0.5rem;
         }
+        
+        /* Footer */
         .article-footer {
-            max-width: 900px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 2rem 1.5rem;
             border-top: 1px solid var(--border);
@@ -214,6 +307,7 @@
             color: var(--text-secondary);
             font-size: 0.875rem;
         }
+        
         .footer-links {
             display: flex;
             justify-content: center;
@@ -221,6 +315,7 @@
             margin-top: 1rem;
             flex-wrap: wrap;
         }
+        
         .footer-link {
             padding: 0.5rem 1rem;
             background: var(--bg-card);
@@ -230,10 +325,17 @@
             font-size: 0.875rem;
             transition: all 0.3s;
         }
-        .footer-link:hover { background: var(--accent); color: white; }
+        
+        .footer-link:hover {
+            background: var(--accent);
+            color: white;
+        }
+        
+        /* Responsive */
         @media (max-width: 768px) {
-            .article-title { font-size: 1.4rem; }
+            .article-title { font-size: 1.5rem; }
             .content-section { padding: 1.5rem; }
+            .info-grid { grid-template-columns: 1fr; }
             .page-gallery { grid-template-columns: 1fr; }
         }
     </style>
@@ -241,92 +343,208 @@
 <body>
     <nav>
         <div class="nav-content">
-            <a href="../index.html" class="back-link"><span>&#8592;</span><span>返回首页</span></a>
-            <div class="archive-badge"><span>&#10003;</span><span>已完整归档 · 14页</span></div>
+            <a href="../index.html" class="back-link">
+                <span>&#8592;</span>
+                <span>返回首页</span>
+            </a>
+            <div class="archive-badge">
+                <span>&#10003;</span>
+                <span>已完整归档 · 19页 · 图片顺序已校准</span>
+            </div>
         </div>
     </nav>
     
     <header class="article-header">
         <div class="meta-bar">
             <span class="platform-tag">&#128241; 微信公众号</span>
-            <span class="meta-item"><span>&#128100;</span><span>新智元</span></span>
-            <span class="meta-item"><span>&#128197;</span><span>2026-04-21 发布</span></span>
-            <span class="meta-item"><span>&#128339;</span><span>2026-04-23 归档</span></span>
+            <span class="meta-item">
+                <span>&#128100;</span>
+                <span>课题申报立项指南1</span>
+            </span>
+            <span class="meta-item">
+                <span>&#128197;</span>
+                <span>2026-03-17 发布</span>
+            </span>
+            <span class="meta-item">
+                <span>&#128339;</span>
+                <span>2026-04-23 归档</span>
+            </span>
         </div>
+        
         <h1 class="article-title">狂跑一万帧丝滑不崩！拿着几十块单摄走一圈，整栋楼3D地图建好了</h1>
+        
         <div class="article-tags">
-            <span class="article-tag">SLAM</span>
-            <span class="article-tag">3D重建</span>
-            <span class="article-tag">LingBot</span>
-            <span class="article-tag">蚂蚁灵波</span>
-            <span class="article-tag">具身智能</span>
-            <span class="article-tag">机器人</span>
+            <span class="article-tag">国自然</span>
+            <span class="article-tag">NSFC</span>
+            <span class="article-tag">2026</span>
+            <span class="article-tag">申请书改版</span>
+            <span class="article-tag">低空智联网</span>
+            <span class="article-tag">数字孪生信道</span>
+            <span class="article-tag">6G通信</span>
+            <span class="article-tag">通感一体化</span>
         </div>
     </header>
     
     <article class="article-content">
+        <!-- Source Info -->
         <section class="content-section">
-            <h2 class="section-title"><span class="icon">&#128209;</span>来源信息</h2>
+            <h2 class="section-title">
+                <span class="icon">&#128209;</span>
+                来源信息
+            </h2>
             <div class="info-grid">
                 <div class="info-item">
                     <span class="info-label">原始链接</span>
-                    <span class="info-value"><a href="https://mp.weixin.qq.com/s/ghr8IGguOPB06hI5aTEp0A" target="_blank" rel="noopener">微信公众号文章 &#8599;</a></span>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">公众号</span>
-                    <span class="info-value">新智元</span>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">发布于</span>
-                    <span class="info-value">2026年4月21日 11:00</span>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">归档状态</span>
-                    <span class="info-value" style="color: var(--success);">&#10003; 全文14页已保存</span>
+                    <span class="info-value">
+                        <a href="https://mp.weixin.qq.com/s/gAi93zEdyf09-8HHoGNtug" target="_blank" rel="noopener">
+                            微信公众号文章 &#8599;
+                        </a>
+                    </span>
                 </div>
                 <div class="info-item">
                     <span class="info-label">抓取方式</span>
-                    <span class="info-value">Playwright (mobile UA, no-proxy)</span>
+                    <span class="info-value">Playwright Headless + mmbiz图片直链提取</span>
                 </div>
                 <div class="info-item">
                     <span class="info-label">文章ID</span>
-                    <span class="info-value">ARC-20260423-003</span>
+                    <span class="info-value">ARC-20260423-001</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">归档状态</span>
+                    <span class="info-value" style="color: var(--success);">&#10003; 全文19页已保存</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">本地图片</span>
+                    <span class="info-value">19页 + 2张截图 (共42.6MB)</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">原文格式</span>
+                    <span class="info-value">图片全文（申请书以图片嵌入微信文章）</span>
                 </div>
             </div>
         </section>
         
+        <!-- Summary -->
         <section class="content-section">
-            <h2 class="section-title"><span class="icon">&#128221;</span>内容摘要</h2>
+            <h2 class="section-title">
+                <span class="icon">&#128221;</span>
+                内容摘要
+            </h2>
             <div class="content-body">
                 <h3>课题名称</h3>
-<p><strong>单目摄像头低成本实时稠密3D重建：LingBot-Map流式长序列重建算法解析</strong></p>
-<h3>研究背景与痛点</h3>
-<p>当前3D重建技术依赖LiDAR或深度相机等昂贵传感器，单目摄像头方案虽成本低廉（几十元级别），但面临三大核心挑战：①深度估计存在尺度不确定性，单目无法直接获取绝对深度；②连续帧间误差累积，轨迹漂移严重；③稠密建图计算量大，传统SLAM方案难以在消费级硬件上流畅运行。如何用低成本单摄实现"狂跑一万帧丝滑不崩"的实时稠密重建，是业界关注的核心问题。</p>
-<h3>解决方案：GCA机制+三缓冲内存架构</h3>
-<p>LingBot-Map（蚂蚁灵波开源）采用"主动几何感知+三缓冲记忆"的流式重建范式，通过几何上下文注意力（GCA）机制在Transformer中内化三层空间记忆：
-<tr><td>记忆层级</td><td>粒度</td><td>作用</td></tr></p>
+                <p><strong>数字孪生信道赋能低空智联网高可靠通信</strong></p>
+                
+                <h3>研究背景与痛点</h3>
+                <p>低空经济已成为国家战略性新兴产业，无人机物流、城市空中交通、低空智慧巡检等新业态快速落地。<strong>低空智联网（LAIN）</strong>作为支撑这些应用安全高效运行的核心基础设施，是6G通信技术面向空天地一体化演进的关键方向。</p>
+                
+                <p>核心痛点：</p>
+                <ul>
+                    <li>低空场景节点<strong>高动态</strong></li>
+                    <li>拓扑<strong>三维化</strong></li>
+                    <li>信道建模<strong>不准</strong></li>
+                    <li>网络状态<strong>难预测</strong></li>
+                </ul>
+                
+                <h3>解决方案：DTCLAIN框架</h3>
+                <p>提出<strong>"多模态感知—环境信道映射—KPI预测—闭环优化"</strong>的全链条解决方案：</p>
+                
+                <table class="innovation-table">
+                    <thead>
+                        <tr>
+                            <th>创新点</th>
+                            <th>核心内容</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>创新一</strong></td>
+                            <td>首次提出以数字孪生信道为核心的<strong>DTCLAIN框架</strong>，融合通感一体化、三维地理信息与无人机状态数据，实现低空环境高保真重构</td>
+                        </tr>
+                        <tr>
+                            <td><strong>创新二</strong></td>
+                            <td>构建无线环境知识（WEK）与<strong>信道大模型协同机制</strong>，实现可解释的环境信道智能映射，提升建模精度与泛化能力</td>
+                        </tr>
+                        <tr>
+                            <td><strong>创新三</strong></td>
+                            <td>引入<strong>迁移学习</strong>实现跨高度空域KPI精准预测，搭配时空推演与双向交互机制，支撑网络自主优化与可靠通信</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h3>科学与工程价值</h3>
+                <ul>
+                    <li><strong>理论层面</strong>：完善6G数字孪生信道与低空通信理论体系</li>
+                    <li><strong>应用层面</strong>：为无人机物流、城市空中交通等低空经济场景提供关键技术支撑</li>
+                    <li><strong>工程价值</strong>：对通信网络规划与智能优化具有重要参考意义</li>
+                </ul>
             </div>
+        </section>
         
-        <section class="gallery-section">
+        <!-- Full Article Gallery -->
+                <section class="gallery-section">
             <div class="gallery-header">
-                <h2 class="section-title" style="margin-bottom:0"><span class="icon">&#128196;</span>原文图片存档（14页）</h2>
-                <span class="gallery-count">共14页 · 点击放大查看</span>
+                <h2 class="section-title"><span class="icon">&#128196;</span> 图片详情</h2>
+                <span class="gallery-count">14 张图片</span>
             </div>
-            <div class="page-gallery">
-                <div class="page-item"><a href="../AI科研/lingbot-map-3d-reconstruction/images/img-01.jpg" target="_blank"><img src="../AI科研/lingbot-map-3d-reconstruction/images/img-01.jpg" alt="封面" class="page-image"></a><div class="page-caption"><span class="page-num">1</span>封面图</div></div>
-                <div class="page-item"><a href="../AI科研/lingbot-map-3d-reconstruction/images/img-02.png" target="_blank"><img src="../AI科研/lingbot-map-3d-reconstruction/images/img-02.png" alt="第2页" class="page-image"></a><div class="page-caption"><span class="page-num">2</span>城市街区3D重建</div></div>
-                <div class="page-item"><a href="../AI科研/lingbot-map-3d-reconstruction/images/img-03.gif" target="_blank"><img src="../AI科研/lingbot-map-3d-reconstruction/images/img-03.gif" alt="第3页" class="page-image"></a><div class="page-caption"><span class="page-num">3</span>航拍俯瞰动画</div></div>
-                <div class="page-item"><a href="../AI科研/lingbot-map-3d-reconstruction/images/img-04.png" target="_blank"><img src="../AI科研/lingbot-map-3d-reconstruction/images/img-04.png" alt="第4页" class="page-image"></a><div class="page-caption"><span class="page-num">4</span>室内穿梭实测</div></div>
-                <div class="page-item"><a href="../AI科研/lingbot-map-3d-reconstruction/images/img-05.png" target="_blank"><img src="../AI科研/lingbot-map-3d-reconstruction/images/img-05.png" alt="第5页" class="page-image"></a><div class="page-caption"><span class="page-num">5</span>暗光走廊测试</div></div>
-                <div class="page-item"><a href="../AI科研/lingbot-map-3d-reconstruction/images/img-07.png" target="_blank"><img src="../AI科研/lingbot-map-3d-reconstruction/images/img-07.png" alt="第6页" class="page-image"></a><div class="page-caption"><span class="page-num">6</span>虚拟→3D空间</div></div>
-                <div class="page-item"><a href="../AI科研/lingbot-map-3d-reconstruction/images/img-08.gif" target="_blank"><img src="../AI科研/lingbot-map-3d-reconstruction/images/img-08.gif" alt="第7页" class="page-image"></a><div class="page-caption"><span class="page-num">7</span>轨迹对比动画</div></div>
-                <div class="page-item"><a href="../AI科研/lingbot-map-3d-reconstruction/images/img-09.gif" target="_blank"><img src="../AI科研/lingbot-map-3d-reconstruction/images/img-09.gif" alt="第8页" class="page-image"></a><div class="page-caption"><span class="page-num">8</span>长轨迹测试</div></div>
-                <div class="page-item"><a href="../AI科研/lingbot-map-3d-reconstruction/images/img-10.gif" target="_blank"><img src="../AI科研/lingbot-map-3d-reconstruction/images/img-10.gif" alt="第9页" class="page-image"></a><div class="page-caption"><span class="page-num">9</span>ETH3D数据集</div></div>
-                <div class="page-item"><a href="../AI科研/lingbot-map-3d-reconstruction/images/img-12.png" target="_blank"><img src="../AI科研/lingbot-map-3d-reconstruction/images/img-12.png" alt="第10页" class="page-image"></a><div class="page-caption"><span class="page-num">10</span>架构图</div></div>
-                <div class="page-item"><a href="../AI科研/lingbot-map-3d-reconstruction/images/img-13.png" target="_blank"><img src="../AI科研/lingbot-map-3d-reconstruction/images/img-13.png" alt="第11页" class="page-image"></a><div class="page-caption"><span class="page-num">11</span>三层记忆机制</div></div>
-                <div class="page-item"><a href="../AI科研/lingbot-map-3d-reconstruction/images/img-15.png" target="_blank"><img src="../AI科研/lingbot-map-3d-reconstruction/images/img-15.png" alt="第12页" class="page-image"></a><div class="page-caption"><span class="page-num">12</span>技术链路</div></div>
-                <div class="page-item"><a href="../AI科研/lingbot-map-3d-reconstruction/images/img-17.jpg" target="_blank"><img src="../AI科研/lingbot-map-3d-reconstruction/images/img-17.jpg" alt="第13页" class="page-image"></a><div class="page-caption"><span class="page-num">13</span>参考链接页</div></div>
-                <div class="page-item"><a href="../AI科研/lingbot-map-3d-reconstruction/images/img-18.jpg" target="_blank"><img src="../AI科研/lingbot-map-3d-reconstruction/images/img-18.jpg" alt="第14页" class="page-image"></a><div class="page-caption"><span class="page-num">14</span>尾页</div></div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="../AI科研/lingbot-map-3d-reconstruction/images/img-01.jpg" alt="img-01.jpg" loading="lazy">
+                </div>
+                <div class="gallery-item">
+                    <img src="../AI科研/lingbot-map-3d-reconstruction/images/img-02.png" alt="img-02.png" loading="lazy">
+                </div>
+                <div class="gallery-item">
+                    <img src="../AI科研/lingbot-map-3d-reconstruction/images/img-03.gif" alt="img-03.gif" loading="lazy">
+                </div>
+                <div class="gallery-item">
+                    <img src="../AI科研/lingbot-map-3d-reconstruction/images/img-04.png" alt="img-04.png" loading="lazy">
+                </div>
+                <div class="gallery-item">
+                    <img src="../AI科研/lingbot-map-3d-reconstruction/images/img-05.png" alt="img-05.png" loading="lazy">
+                </div>
+                <div class="gallery-item">
+                    <img src="../AI科研/lingbot-map-3d-reconstruction/images/img-07.png" alt="img-07.png" loading="lazy">
+                </div>
+                <div class="gallery-item">
+                    <img src="../AI科研/lingbot-map-3d-reconstruction/images/img-08.gif" alt="img-08.gif" loading="lazy">
+                </div>
+                <div class="gallery-item">
+                    <img src="../AI科研/lingbot-map-3d-reconstruction/images/img-09.gif" alt="img-09.gif" loading="lazy">
+                </div>
+                <div class="gallery-item">
+                    <img src="../AI科研/lingbot-map-3d-reconstruction/images/img-10.gif" alt="img-10.gif" loading="lazy">
+                </div>
+                <div class="gallery-item">
+                    <img src="../AI科研/lingbot-map-3d-reconstruction/images/img-12.png" alt="img-12.png" loading="lazy">
+                </div>
+                <div class="gallery-item">
+                    <img src="../AI科研/lingbot-map-3d-reconstruction/images/img-13.png" alt="img-13.png" loading="lazy">
+                </div>
+                <div class="gallery-item">
+                    <img src="../AI科研/lingbot-map-3d-reconstruction/images/img-15.png" alt="img-15.png" loading="lazy">
+                </div>
+                <div class="gallery-item">
+                    <img src="../AI科研/lingbot-map-3d-reconstruction/images/img-17.jpg" alt="img-17.jpg" loading="lazy">
+                </div>
+                <div class="gallery-item">
+                    <img src="../AI科研/lingbot-map-3d-reconstruction/images/img-18.jpg" alt="img-18.jpg" loading="lazy">
+                </div>
+            </div>
+        </section>
+        
+        <!-- Screenshot -->
+        <section class="content-section">
+            <h2 class="section-title">
+                <span class="icon">&#128444;</span>
+                微信文章原始截图
+            </h2>
+            <p style="color: var(--text-secondary); margin-bottom: 1rem; font-size: 0.875rem;">
+                完整保留原始页面，包括公众号信息、发布时间、阅读量等元数据
+            </p>
+            <div style="background: var(--bg-card); border-radius: 12px; overflow: hidden; max-height: 500px; overflow-y: auto;">
+                <a href="../科研基金/images/screenshot-guoziran2026.png" target="_blank">
+                    <img src="../科研基金/images/screenshot-guoziran2026.png" alt="微信文章截图" style="width:100%;display:block;">
+                </a>
             </div>
         </section>
     </article>
@@ -335,7 +553,9 @@
         <p>本内容由 Alex 自动归档生成 · 仅供个人学习研究使用</p>
         <div class="footer-links">
             <a href="../index.html" class="footer-link">&#8592; 返回首页</a>
-            <a href="https://mp.weixin.qq.com/s/ghr8IGguOPB06hI5aTEp0A" class="footer-link" target="_blank" rel="noopener">查看原文 &#8599;</a>
+            <a href="https://mp.weixin.qq.com/s/gAi93zEdyf09-8HHoGNtug" class="footer-link" target="_blank" rel="noopener">
+                查看原文 &#8599;
+            </a>
         </div>
     </footer>
 </body>
