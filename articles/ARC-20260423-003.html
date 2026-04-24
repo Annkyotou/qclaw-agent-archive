@@ -349,7 +349,7 @@
             </a>
             <div class="archive-badge">
                 <span>&#10003;</span>
-                <span>已完整归档 · 19页 · 图片顺序已校准</span>
+                <span>已完整归档 · 14页</span>
             </div>
         </div>
     </nav>
@@ -359,10 +359,16 @@
             <span class="platform-tag">&#128241; 微信公众号</span>
             <span class="meta-item">
                 <span>&#128100;</span>
-                <span>课题申报立项指南1</span>
+                <span>新智元</span>
             </span>
             <span class="meta-item">
                 <span>&#128197;</span>
+                <span>2026年4月21日 11:00 发布</span>
+            </span>
+            <span class="meta-item">
+                <span>&#128339;</span>
+                <span>2026-04-23 归档</span>
+            </span>
                 <span>2026-03-17 发布</span>
             </span>
             <span class="meta-item">
@@ -373,20 +379,11 @@
         
         <h1 class="article-title">狂跑一万帧丝滑不崩！拿着几十块单摄走一圈，整栋楼3D地图建好了</h1>
         
-        <div class="article-tags">
-            <span class="article-tag">国自然</span>
-            <span class="article-tag">NSFC</span>
-            <span class="article-tag">2026</span>
-            <span class="article-tag">申请书改版</span>
-            <span class="article-tag">低空智联网</span>
-            <span class="article-tag">数字孪生信道</span>
-            <span class="article-tag">6G通信</span>
-            <span class="article-tag">通感一体化</span>
-        </div>
+        <div class="article-tags"><span class="article-tag">3D重建</span><span class="article-tag">SLAM</span><span class="article-tag">单摄</span><span class="article-tag">新智元</span><span class="article-tag">LiDAR</span><span class="article-tag">GCA</span></div>
     </header>
     
     <article class="article-content">
-        <!-- Source Info -->
+                <!-- Source Info -->
         <section class="content-section">
             <h2 class="section-title">
                 <span class="icon">&#128209;</span>
@@ -396,7 +393,7 @@
                 <div class="info-item">
                     <span class="info-label">原始链接</span>
                     <span class="info-value">
-                        <a href="https://mp.weixin.qq.com/s/gAi93zEdyf09-8HHoGNtug" target="_blank" rel="noopener">
+                        <a href="https://mp.weixin.qq.com/s/ghr8IGguOPB06hI5aTEp0A" target="_blank" rel="noopener">
                             微信公众号文章 &#8599;
                         </a>
                     </span>
@@ -407,24 +404,43 @@
                 </div>
                 <div class="info-item">
                     <span class="info-label">文章ID</span>
-                    <span class="info-value">ARC-20260423-001</span>
+                    <span class="info-value">ARC-20260423-003</span>
                 </div>
                 <div class="info-item">
                     <span class="info-label">归档状态</span>
-                    <span class="info-value" style="color: var(--success);">&#10003; 全文19页已保存</span>
+                    <span class="info-value" style="color: var(--success);">&#10003; 全文14页已保存</span>
                 </div>
                 <div class="info-item">
                     <span class="info-label">本地图片</span>
-                    <span class="info-value">19页 + 2张截图 (共42.6MB)</span>
+                    <span class="info-value">14页</span>
                 </div>
                 <div class="info-item">
                     <span class="info-label">原文格式</span>
-                    <span class="info-value">图片全文（申请书以图片嵌入微信文章）</span>
+                    <span class="info-value">图片全文（文章以图片嵌入微信）</span>
                 </div>
             </div>
         </section>
-        
+
         <!-- Summary -->
+        <section class="content-section">
+            <h2 class="section-title">
+                <span class="icon">&#128221;</span>
+                内容摘要
+            </h2>
+            <div class="content-body">
+                <p>核心内容摘要</p><h3>课题名称</h3>
+                <strong>单目摄像头低成本实时稠密3D重建：LingBot-Map流式长序列重建算法解析</strong></p><h3>研究背景与痛点</h3>
+                当前3D重建技术依赖LiDAR或深度相机等昂贵传感器，单目摄像头方案虽成本低廉（几十元级别），但面临三大核心挑战：①深度估计存在尺度不确定性，单目无法直接获取绝对深度；②连续帧间误差累积，轨迹漂移严重；③稠密建图计算量大，传统SLAM方案难以在消费级硬件上流畅运行。如何用低成本单摄实现"狂跑一万帧丝滑不崩"的实时稠密重建，是业界关注的核心问题。</p><h3>解决方案：GCA机制+三缓冲内存架构</h3>
+                LingBot-Map（蚂蚁灵波开源）采用"主动几何感知+三缓冲记忆"的流式重建范式，通过几何上下文注意力（GCA）机制在Transformer中内化三层空间记忆：</p><table class="innovation-table"><thead><tr><th>记忆层级</th><th>粒度</th><th>作用</th></tr></thead><tbody>
+                <tr><td><strong><strong>锚点（Anchor）</strong></strong></td><td>前几帧全量</td><td>锁死坐标系和尺度基准，确保万帧后仍对齐起点</td></tr>
+                <tr><td><strong><strong>位姿参考窗口</strong></strong></td><td>最近几十帧全量</td><td>捕捉当前位置附近密集几何细节</td></tr>
+                <tr><td><strong><strong>轨迹记忆</strong></strong></td><td>每帧仅6个Token</td><td>极紧凑压缩整条轨迹关键信息，内存从500万Token降至7万</td></tr>
+                </tbody></table><p><strong>核心指标</strong>：Oxford Spires数据集ATE仅6.42m（第二名18.16m，差距3倍），ETH3D重建F1达98.98（第二名77.28），恒定内存处理万帧长视频。已开源至Hugging Face与ModelScope，Apache 2.0协议。</p><h3>科学与工程价值</h3>
+                - <strong>成本突破</strong>：仅需消费级单目摄像头，打破高精度3D重建的硬件门槛，替代数万元激光雷达方案
+                - <strong>实时性</strong>：流式处理架构确保长序列运行稳定，为机器人实时导航提供可能
+                - <strong>可扩展性</strong>：与LingBot-Depth（深度感知）、LingBot-VLA（具身大模型）形成具身智能技术闭环，覆盖深度→空间→决策全链路</p>
+            </div>
+        </section>
         <section class="content-section">
             <h2 class="section-title">
                 <span class="icon">&#128221;</span>
@@ -480,81 +496,108 @@
             </div>
         </section>
         
-        <!-- Full Article Gallery -->
-                <section class="gallery-section">
+                <!-- Full Article Gallery -->
+        <section class="gallery-section">
             <div class="gallery-header">
-                <h2 class="section-title"><span class="icon">&#128196;</span> 图片详情</h2>
-                <span class="gallery-count">14 张图片</span>
+                <h2 class="section-title" style="margin-bottom:0">
+                    <span class="icon">&#128196;</span>
+                    原文全文（14页高清存档）
+                </h2>
+                <span class="gallery-count">共14页 · 点击放大查看</span>
             </div>
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="../AI科研/lingbot-map-3d-reconstruction/images/img-01.jpg" alt="img-01.jpg" loading="lazy">
+            <div class="page-gallery">
+                <div class="page-item">
+                    <a href="../AI科研/lingbot-map-3d-reconstruction/images/img-01.jpg" target="_blank">
+                        <img src="../AI科研/lingbot-map-3d-reconstruction/images/img-01.jpg" alt="第1页" class="page-image">
+                    </a>
+                    <div class="page-caption"><span class="page-num">1</span>第1页</div>
                 </div>
-                <div class="gallery-item">
-                    <img src="../AI科研/lingbot-map-3d-reconstruction/images/img-02.png" alt="img-02.png" loading="lazy">
+                <div class="page-item">
+                    <a href="../AI科研/lingbot-map-3d-reconstruction/images/img-02.png" target="_blank">
+                        <img src="../AI科研/lingbot-map-3d-reconstruction/images/img-02.png" alt="第2页" class="page-image">
+                    </a>
+                    <div class="page-caption"><span class="page-num">2</span>第2页</div>
                 </div>
-                <div class="gallery-item">
-                    <img src="../AI科研/lingbot-map-3d-reconstruction/images/img-03.gif" alt="img-03.gif" loading="lazy">
+                <div class="page-item">
+                    <a href="../AI科研/lingbot-map-3d-reconstruction/images/img-03.gif" target="_blank">
+                        <img src="../AI科研/lingbot-map-3d-reconstruction/images/img-03.gif" alt="第3页" class="page-image">
+                    </a>
+                    <div class="page-caption"><span class="page-num">3</span>第3页</div>
                 </div>
-                <div class="gallery-item">
-                    <img src="../AI科研/lingbot-map-3d-reconstruction/images/img-04.png" alt="img-04.png" loading="lazy">
+                <div class="page-item">
+                    <a href="../AI科研/lingbot-map-3d-reconstruction/images/img-04.png" target="_blank">
+                        <img src="../AI科研/lingbot-map-3d-reconstruction/images/img-04.png" alt="第4页" class="page-image">
+                    </a>
+                    <div class="page-caption"><span class="page-num">4</span>第4页</div>
                 </div>
-                <div class="gallery-item">
-                    <img src="../AI科研/lingbot-map-3d-reconstruction/images/img-05.png" alt="img-05.png" loading="lazy">
+                <div class="page-item">
+                    <a href="../AI科研/lingbot-map-3d-reconstruction/images/img-05.png" target="_blank">
+                        <img src="../AI科研/lingbot-map-3d-reconstruction/images/img-05.png" alt="第5页" class="page-image">
+                    </a>
+                    <div class="page-caption"><span class="page-num">5</span>第5页</div>
                 </div>
-                <div class="gallery-item">
-                    <img src="../AI科研/lingbot-map-3d-reconstruction/images/img-07.png" alt="img-07.png" loading="lazy">
+                <div class="page-item">
+                    <a href="../AI科研/lingbot-map-3d-reconstruction/images/img-07.png" target="_blank">
+                        <img src="../AI科研/lingbot-map-3d-reconstruction/images/img-07.png" alt="第6页" class="page-image">
+                    </a>
+                    <div class="page-caption"><span class="page-num">6</span>第6页</div>
                 </div>
-                <div class="gallery-item">
-                    <img src="../AI科研/lingbot-map-3d-reconstruction/images/img-08.gif" alt="img-08.gif" loading="lazy">
+                <div class="page-item">
+                    <a href="../AI科研/lingbot-map-3d-reconstruction/images/img-08.gif" target="_blank">
+                        <img src="../AI科研/lingbot-map-3d-reconstruction/images/img-08.gif" alt="第7页" class="page-image">
+                    </a>
+                    <div class="page-caption"><span class="page-num">7</span>第7页</div>
                 </div>
-                <div class="gallery-item">
-                    <img src="../AI科研/lingbot-map-3d-reconstruction/images/img-09.gif" alt="img-09.gif" loading="lazy">
+                <div class="page-item">
+                    <a href="../AI科研/lingbot-map-3d-reconstruction/images/img-09.gif" target="_blank">
+                        <img src="../AI科研/lingbot-map-3d-reconstruction/images/img-09.gif" alt="第8页" class="page-image">
+                    </a>
+                    <div class="page-caption"><span class="page-num">8</span>第8页</div>
                 </div>
-                <div class="gallery-item">
-                    <img src="../AI科研/lingbot-map-3d-reconstruction/images/img-10.gif" alt="img-10.gif" loading="lazy">
+                <div class="page-item">
+                    <a href="../AI科研/lingbot-map-3d-reconstruction/images/img-10.gif" target="_blank">
+                        <img src="../AI科研/lingbot-map-3d-reconstruction/images/img-10.gif" alt="第9页" class="page-image">
+                    </a>
+                    <div class="page-caption"><span class="page-num">9</span>第9页</div>
                 </div>
-                <div class="gallery-item">
-                    <img src="../AI科研/lingbot-map-3d-reconstruction/images/img-12.png" alt="img-12.png" loading="lazy">
+                <div class="page-item">
+                    <a href="../AI科研/lingbot-map-3d-reconstruction/images/img-12.png" target="_blank">
+                        <img src="../AI科研/lingbot-map-3d-reconstruction/images/img-12.png" alt="第10页" class="page-image">
+                    </a>
+                    <div class="page-caption"><span class="page-num">10</span>第10页</div>
                 </div>
-                <div class="gallery-item">
-                    <img src="../AI科研/lingbot-map-3d-reconstruction/images/img-13.png" alt="img-13.png" loading="lazy">
+                <div class="page-item">
+                    <a href="../AI科研/lingbot-map-3d-reconstruction/images/img-13.png" target="_blank">
+                        <img src="../AI科研/lingbot-map-3d-reconstruction/images/img-13.png" alt="第11页" class="page-image">
+                    </a>
+                    <div class="page-caption"><span class="page-num">11</span>第11页</div>
                 </div>
-                <div class="gallery-item">
-                    <img src="../AI科研/lingbot-map-3d-reconstruction/images/img-15.png" alt="img-15.png" loading="lazy">
+                <div class="page-item">
+                    <a href="../AI科研/lingbot-map-3d-reconstruction/images/img-15.png" target="_blank">
+                        <img src="../AI科研/lingbot-map-3d-reconstruction/images/img-15.png" alt="第12页" class="page-image">
+                    </a>
+                    <div class="page-caption"><span class="page-num">12</span>第12页</div>
                 </div>
-                <div class="gallery-item">
-                    <img src="../AI科研/lingbot-map-3d-reconstruction/images/img-17.jpg" alt="img-17.jpg" loading="lazy">
+                <div class="page-item">
+                    <a href="../AI科研/lingbot-map-3d-reconstruction/images/img-17.jpg" target="_blank">
+                        <img src="../AI科研/lingbot-map-3d-reconstruction/images/img-17.jpg" alt="第13页" class="page-image">
+                    </a>
+                    <div class="page-caption"><span class="page-num">13</span>第13页</div>
                 </div>
-                <div class="gallery-item">
-                    <img src="../AI科研/lingbot-map-3d-reconstruction/images/img-18.jpg" alt="img-18.jpg" loading="lazy">
+                <div class="page-item">
+                    <a href="../AI科研/lingbot-map-3d-reconstruction/images/img-18.jpg" target="_blank">
+                        <img src="../AI科研/lingbot-map-3d-reconstruction/images/img-18.jpg" alt="第14页" class="page-image">
+                    </a>
+                    <div class="page-caption"><span class="page-num">14</span>第14页</div>
                 </div>
             </div>
         </section>
-        
-        <!-- Screenshot -->
-        <section class="content-section">
-            <h2 class="section-title">
-                <span class="icon">&#128444;</span>
-                微信文章原始截图
-            </h2>
-            <p style="color: var(--text-secondary); margin-bottom: 1rem; font-size: 0.875rem;">
-                完整保留原始页面，包括公众号信息、发布时间、阅读量等元数据
-            </p>
-            <div style="background: var(--bg-card); border-radius: 12px; overflow: hidden; max-height: 500px; overflow-y: auto;">
-                <a href="../科研基金/images/screenshot-guoziran2026.png" target="_blank">
-                    <img src="../科研基金/images/screenshot-guoziran2026.png" alt="微信文章截图" style="width:100%;display:block;">
-                </a>
-            </div>
-        </section>
-    </article>
-    
-    <footer class="article-footer">
+
+        <!-- 微信截图不可用 -->    <footer class="article-footer">
         <p>本内容由 Alex 自动归档生成 · 仅供个人学习研究使用</p>
         <div class="footer-links">
             <a href="../index.html" class="footer-link">&#8592; 返回首页</a>
-            <a href="https://mp.weixin.qq.com/s/gAi93zEdyf09-8HHoGNtug" class="footer-link" target="_blank" rel="noopener">
-                查看原文 &#8599;
+            <a href="https://mp.weixin.qq.com/s/ghr8IGguOPB06hI5aTEp0A"看原文查看原文 &#8599;
             </a>
         </div>
     </footer>
