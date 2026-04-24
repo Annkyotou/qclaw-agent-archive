@@ -1,382 +1,382 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Transformer+PINN：登Nature子刊新突破！！ | Alex 知识库</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-primary: #0f172a;
-            --bg-secondary: #1e293b;
-            --bg-card: #334155;
-            --text-primary: #f8fafc;
-            --text-secondary: #94a3b8;
-            --accent: #3b82f6;
-            --accent-hover: #2563eb;
-            --border: #475569;
-            --success: #10b981;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.7;
-        }
-        nav {
-            background: var(--bg-secondary);
-            border-bottom: 1px solid var(--border);
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        .nav-content {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .back-link {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.875rem;
-            transition: color 0.3s;
-        }
-        .back-link:hover { color: var(--accent); }
-        .archive-badge {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            background: rgba(16, 185, 129, 0.1);
-            border: 1px solid var(--success);
-            border-radius: 20px;
-            color: var(--success);
-            font-size: 0.75rem;
-            font-weight: 500;
-        }
-        .article-header {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 3rem 1.5rem 2rem;
-        }
-        .meta-bar {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-        .meta-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.875rem;
-            color: var(--text-secondary);
-        }
-        .platform-tag {
-            padding: 0.25rem 0.75rem;
-            background: rgba(59, 130, 246, 0.1);
-            color: var(--accent);
-            border-radius: 4px;
-            font-weight: 500;
-        }
-        .article-title {
-            font-size: 2rem;
-            font-weight: 700;
-            line-height: 1.3;
-            margin-bottom: 1.5rem;
-        }
-        .article-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-        .article-tag {
-            padding: 0.375rem 0.75rem;
-            background: var(--bg-card);
-            border-radius: 20px;
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-        }
-        .article-content {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 0 1.5rem 3rem;
-        }
-        .content-section {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 2rem;
-            margin-bottom: 1.5rem;
-        }
-        .section-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 1.25rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        .section-title .icon { font-size: 1.5rem; }
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1rem;
-        }
-        .info-item {
-            display: flex;
-            flex-direction: column;
-            gap: 0.25rem;
-        }
-        .info-label {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-        .info-value {
-            font-size: 0.9375rem;
-            color: var(--text-primary);
-        }
-        .info-value a { color: var(--accent); text-decoration: none; }
-        .info-value a:hover { text-decoration: underline; }
-        .content-body {
-            font-size: 1rem;
-            line-height: 1.9;
-            color: var(--text-secondary);
-        }
-        .content-body p { margin-bottom: 1rem; }
-        .content-body strong { color: var(--text-primary); }
-        .gallery-section {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 2rem;
-            margin-bottom: 1.5rem;
-        }
-        .gallery-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-        .gallery-count { font-size: 0.875rem; color: var(--text-secondary); }
-        .page-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.5rem;
-        }
-        .page-item {
-            background: var(--bg-card);
-            border-radius: 12px;
-            overflow: hidden;
-        }
-        .page-image {
-            width: 100%;
-            height: auto;
-            display: block;
-            cursor: zoom-in;
-            transition: transform 0.3s;
-        }
-        .page-image:hover { transform: scale(1.02); }
-        .page-caption {
-            padding: 1rem;
-            font-size: 0.875rem;
-            color: var(--text-secondary);
-            text-align: center;
-            background: rgba(0,0,0,0.2);
-        }
-        .page-num {
-            display: inline-block;
-            background: var(--accent);
-            color: white;
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            text-align: center;
-            line-height: 24px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            margin-right: 0.5rem;
-        }
-        .article-footer {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 2rem 1.5rem;
-            border-top: 1px solid var(--border);
-            text-align: center;
-            color: var(--text-secondary);
-            font-size: 0.875rem;
-        }
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 1rem;
-            flex-wrap: wrap;
-        }
-        .footer-link {
-            padding: 0.5rem 1rem;
-            background: var(--bg-card);
-            border-radius: 8px;
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.875rem;
-            transition: all 0.3s;
-        }
-        .footer-link:hover { background: var(--accent); color: white; }
-        @media (max-width: 768px) {
-            .article-title { font-size: 1.5rem; }
-            .content-section { padding: 1.5rem; }
-            .page-gallery { grid-template-columns: 1fr; }
-        }
-    </style>
-</head>
-<body>
-    <nav>
-        <div class="nav-content">
-            <a href="../index.html" class="back-link"><span>&#8592;</span><span>返回首页</span></a>
-            <div class="archive-badge"><span>&#10003;</span><span>已完整归档 · 9页</span></div>
-        </div>
-    </nav>
-    
-    <header class="article-header">
-        <div class="meta-bar">
-            <span class="platform-tag">&#128241; 微信公众号</span>
-            <span class="meta-item"><span>&#128100;</span><span>玩转AI科研</span></span>
-            <span class="meta-item"><span>&#128197;</span><span>2026-03-31 发布</span></span>
-            <span class="meta-item"><span>&#128339;</span><span>2026-04-23 归档</span></span>
-        </div>
-        <h1 class="article-title">Transformer+PINN：登Nature子刊新突破！！</h1>
-        <div class="article-tags">
-            <span class="article-tag">Transformer</span>
-            <span class="article-tag">PINN</span>
-            <span class="article-tag">物理信息神经网络</span>
-            <span class="article-tag">Nature</span>
-            <span class="article-tag">科研论文</span>
-        </div>
-    </header>
-    
-    <article class="article-content">
-        <!-- Source Info -->
-        <section class="content-section">
-            <h2 class="section-title"><span class="icon">&#128209;</span>来源信息</h2>
-            <div class="info-grid">
-                <div class="info-item">
-                    <span class="info-label">原始链接</span>
-                    <span class="info-value"><a href="https://mp.weixin.qq.com/s/Ub8sujrxZIllZOAmtvL8EQ" target="_blank" rel="noopener">微信公众号文章 &#8599;</a></span>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">公众号</span>
-                    <span class="info-value">玩转AI科研</span>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">发布于</span>
-                    <span class="info-value">2026年3月31日 22:18</span>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">归档状态</span>
-                    <span class="info-value" style="color: var(--success);">&#10003; 全文9页已保存</span>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">抓取方式</span>
-                    <span class="info-value">Playwright (mobile UA, no-proxy)</span>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">文章ID</span>
-                    <span class="info-value">ARC-20260423-002</span>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Content Summary -->
-        <section class="content-section">
-            <h2 class="section-title"><span class="icon">&#128221;</span>内容摘要</h2>
-            <div class="content-body">
-                <p>本文系统梳理了Transformer与物理信息神经网络（PINN）深度融合的前沿进展，涵盖Physics-Transformer、PGT、B-PINN、PINTO、PhysicsFormer、DynFormer等代表性工作。Transformer凭借注意力机制捕捉长程时空依赖的优势，为PINN的编码器-解码器架构带来全新设计范式，使其在处理多尺度物理场问题时表现出更强的表达能力。</p>
-                <p>Physicsformer引入序列建模框架，将物理约束嵌入到注意力权重中；DynFormer则进一步将动态系统纳入建模范围，展示了时序推理与物理规律结合的巨大潜力。该综述为相关领域研究者提供了清晰的技术演进路线图。</p>
-            </div>
-        
-        <!-- Image Gallery -->
-        <section class="gallery-section">
-            <div class="gallery-header">
-                <h2 class="section-title" style="margin-bottom:0"><span class="icon">&#128196;</span>原文图片存档（9页）</h2>
-                <span class="gallery-count">共9页 · 点击放大查看</span>
-            </div>
-            <div class="page-gallery">
-                <div class="page-item">
-                    <a href="../AI科研/transformer-pinn-papers/images/img-01.jpg" target="_blank">
-                        <img src="../AI科研/transformer-pinn-papers/images/img-01.jpg" alt="第1页" class="page-image">
-                    </a>
-                    <div class="page-caption"><span class="page-num">1</span>封面</div>
-                </div>
-                <div class="page-item">
-                    <a href="../AI科研/transformer-pinn-papers/images/img-02.png" target="_blank">
-                        <img src="../AI科研/transformer-pinn-papers/images/img-02.png" alt="第2页" class="page-image">
-                    </a>
-                    <div class="page-caption"><span class="page-num">2</span>PINN原理</div>
-                </div>
-                <div class="page-item">
-                    <a href="../AI科研/transformer-pinn-papers/images/img-03.png" target="_blank">
-                        <img src="../AI科研/transformer-pinn-papers/images/img-03.png" alt="第3页" class="page-image">
-                    </a>
-                    <div class="page-caption"><span class="page-num">3</span>架构图</div>
-                </div>
-                <div class="page-item">
-                    <a href="../AI科研/transformer-pinn-papers/images/img-04.png" target="_blank">
-                        <img src="../AI科研/transformer-pinn-papers/images/img-04.png" alt="第4页" class="page-image">
-                    </a>
-                    <div class="page-caption"><span class="page-num">4</span>实验结果</div>
-                </div>
-                <div class="page-item">
-                    <a href="../AI科研/transformer-pinn-papers/images/img-05.png" target="_blank">
-                        <img src="../AI科研/transformer-pinn-papers/images/img-05.png" alt="第5页" class="page-image">
-                    </a>
-                    <div class="page-caption"><span class="page-num">5</span>对比分析</div>
-                </div>
-                <div class="page-item">
-                    <a href="../AI科研/transformer-pinn-papers/images/img-06.png" target="_blank">
-                        <img src="../AI科研/transformer-pinn-papers/images/img-06.png" alt="第6页" class="page-image">
-                    </a>
-                    <div class="page-caption"><span class="page-num">6</span>应用场景</div>
-                </div>
-                <div class="page-item">
-                    <a href="../AI科研/transformer-pinn-papers/images/img-07.png" target="_blank">
-                        <img src="../AI科研/transformer-pinn-papers/images/img-07.png" alt="第7页" class="page-image">
-                    </a>
-                    <div class="page-caption"><span class="page-num">7</span>消融实验</div>
-                </div>
-                <div class="page-item">
-                    <a href="../AI科研/transformer-pinn-papers/images/img-08.png" target="_blank">
-                        <img src="../AI科研/transformer-pinn-papers/images/img-08.png" alt="第8页" class="page-image">
-                    </a>
-                    <div class="page-caption"><span class="page-num">8</span>总结与展望</div>
-                </div>
-                <div class="page-item">
-                    <a href="../AI科研/transformer-pinn-papers/images/img-09.png" target="_blank">
-                        <img src="../AI科研/transformer-pinn-papers/images/img-09.png" alt="第9页" class="page-image">
-                    </a>
-                    <div class="page-caption"><span class="page-num">9</span>参考文献</div>
-                </div>
-            </div>
-        </section>
-    </article>
-    
-    <footer class="article-footer">
-        <p>本内容由 Alex 自动归档生成 · 仅供个人学习研究使用</p>
-        <div class="footer-links">
-            <a href="../index.html" class="footer-link">&#8592; 返回首页</a>
-            <a href="https://mp.weixin.qq.com/s/Ub8sujrxZIllZOAmtvL8EQ" class="footer-link" target="_blank" rel="noopener">查看原文 &#8599;</a>
-        </div>
-    </footer>
-</body>
-</html>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transformer+PINN閿涙氨娅�Nature鐎涙劕鍨旈弬鎵�鐛婇惍杈剧磼閿涳拷 | Alex 閻�銉ㄧ槕鎼达拷</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-card: #334155;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --border: #475569;
+            --success: #10b981;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+        nav {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .nav-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .back-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: color 0.3s;
+        }
+        .back-link:hover { color: var(--accent); }
+        .archive-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid var(--success);
+            border-radius: 20px;
+            color: var(--success);
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        .article-header {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem 2rem;
+        }
+        .meta-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+        .platform-tag {
+            padding: 0.25rem 0.75rem;
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--accent);
+            border-radius: 4px;
+            font-weight: 500;
+        }
+        .article-title {
+            font-size: 2rem;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 1.5rem;
+        }
+        .article-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .article-tag {
+            padding: 0.375rem 0.75rem;
+            background: var(--bg-card);
+            border-radius: 20px;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+        .article-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 1.5rem 3rem;
+        }
+        .content-section {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .section-title .icon { font-size: 1.5rem; }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+        }
+        .info-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+        .info-label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .info-value {
+            font-size: 0.9375rem;
+            color: var(--text-primary);
+        }
+        .info-value a { color: var(--accent); text-decoration: none; }
+        .info-value a:hover { text-decoration: underline; }
+        .content-body {
+            font-size: 1rem;
+            line-height: 1.9;
+            color: var(--text-secondary);
+        }
+        .content-body p { margin-bottom: 1rem; }
+        .content-body strong { color: var(--text-primary); }
+        .gallery-section {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        .gallery-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        .gallery-count { font-size: 0.875rem; color: var(--text-secondary); }
+        .page-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        .page-item {
+            background: var(--bg-card);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .page-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            cursor: zoom-in;
+            transition: transform 0.3s;
+        }
+        .page-image:hover { transform: scale(1.02); }
+        .page-caption {
+            padding: 1rem;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            text-align: center;
+            background: rgba(0,0,0,0.2);
+        }
+        .page-num {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+        }
+        .article-footer {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+        .footer-link {
+            padding: 0.5rem 1rem;
+            background: var(--bg-card);
+            border-radius: 8px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: all 0.3s;
+        }
+        .footer-link:hover { background: var(--accent); color: white; }
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.5rem; }
+            .content-section { padding: 1.5rem; }
+            .page-gallery { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-content">
+            <a href="../index.html" class="back-link"><span>&#8592;</span><span>鏉╂柨娲栨＃鏍�銆�</span></a>
+            <div class="archive-badge"><span>&#10003;</span><span>瀹告彃鐣�閺佹潙缍婂�楋拷 璺� 9妞わ拷</span></div>
+        </div>
+    </nav>
+    
+    <header class="article-header">
+        <div class="meta-bar">
+            <span class="platform-tag">&#128241; 瀵帮拷娣団�冲彆娴兼��褰�</span>
+            <span class="meta-item"><span>&#128100;</span><span>閻溾晞娴咥I缁夋垹鐖�</span></span>
+            <span class="meta-item"><span>&#128197;</span><span>2026-03-31 閸欐垵绔�</span></span>
+            <span class="meta-item"><span>&#128339;</span><span>2026-04-23 瑜版帗銆�</span></span>
+        </div>
+        <h1 class="article-title">Transformer+PINN閿涙氨娅�Nature鐎涙劕鍨旈弬鎵�鐛婇惍杈剧磼閿涳拷</h1>
+        <div class="article-tags">
+            <span class="article-tag">Transformer</span>
+            <span class="article-tag">PINN</span>
+            <span class="article-tag">閻椻晝鎮婃穱鈩冧紖缁佺偟绮＄純鎴犵捕</span>
+            <span class="article-tag">Nature</span>
+            <span class="article-tag">缁夋垹鐖虹拋鐑樻瀮</span>
+        </div>
+    </header>
+    
+    <article class="article-content">
+        <!-- Source Info -->
+        <section class="content-section">
+            <h2 class="section-title"><span class="icon">&#128209;</span>閺夈儲绨�娣団剝浼�</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <span class="info-label">閸樼喎锟藉��鎽奸幒锟�</span>
+                    <span class="info-value"><a href="https://mp.weixin.qq.com/s/Ub8sujrxZIllZOAmtvL8EQ" target="_blank" rel="noopener">瀵帮拷娣団�冲彆娴兼��褰块弬鍥╃彿 &#8599;</a></span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">閸忥拷娴兼��褰�</span>
+                    <span class="info-value">閻溾晞娴咥I缁夋垹鐖�</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">閸欐垵绔锋禍锟�</span>
+                    <span class="info-value">2026楠烇拷3閺堬拷31閺冿拷 22:18</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">瑜版帗銆傞悩鑸碉拷锟�</span>
+                    <span class="info-value" style="color: var(--success);">&#10003; 閸忋劍鏋�9妞ら潧鍑℃穱婵嗙摠</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">閹舵挸褰囬弬鐟扮础</span>
+                    <span class="info-value">Playwright (mobile UA, no-proxy)</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">閺傚洨鐝稩D</span>
+                    <span class="info-value">ARC-20260423-002</span>
+                </div>
+            </div>
+        </section>
+        
+                    <div class="content-body">
+                <h3>课题名称</h3>
+<p><strong>Transformer与物理信息神经网络（PINN）深度融合：AI驱动科学计算新范式</strong></p>
+<h3>研究背景与痛点</h3>
+<p>PINN（物理信息神经网络）将偏微分方程（PDE）作为软约束嵌入网络损失函数，在科学计算领域展现了强大潜力。然而传统基于MLP的PINN存在两大核心瓶颈：①对复杂时空依赖建模能力不足，难以捕捉湍流、扩散等高维问题的长期时序特征；②梯度失衡问题严重，多物理场耦合时各损失项相互干扰，训练不稳定、收敛困难。与此同时，Transformer架构在自然语言处理领域证明了其卓越的序列建模能力，但其与物理约束的深度融合尚处早期探索阶段。</p>
+<h3>解决方案：Transformer-PINN融合路线</h3>
+<p>围绕"将Transformer的长距离建模能力引入物理信息学习"这一核心，涌现了多条技术路线：
+<tr><td>方法</td><td>核心思路</td><td>关键创新</td></tr></p>
+            </div><!-- Image Gallery -->
+        <section class="gallery-section">
+            <div class="gallery-header">
+                <h2 class="section-title" style="margin-bottom:0"><span class="icon">&#128196;</span>閸樼喐鏋冮崶鍓у�栫�涙ɑ銆傞敍锟�9妞ょ�夌礆</h2>
+                <span class="gallery-count">閸忥拷9妞わ拷 璺� 閻愮懓鍤�閺�鎯с亣閺屻儳婀�</span>
+            </div>
+            <div class="page-gallery">
+                <div class="page-item">
+                    <a href="../AI缁夋垹鐖�/transformer-pinn-papers/images/img-01.jpg" target="_blank">
+                        <img src="../AI缁夋垹鐖�/transformer-pinn-papers/images/img-01.jpg" alt="缁楋拷1妞わ拷" class="page-image">
+                    </a>
+                    <div class="page-caption"><span class="page-num">1</span>鐏忎線娼�</div>
+                </div>
+                <div class="page-item">
+                    <a href="../AI缁夋垹鐖�/transformer-pinn-papers/images/img-02.png" target="_blank">
+                        <img src="../AI缁夋垹鐖�/transformer-pinn-papers/images/img-02.png" alt="缁楋拷2妞わ拷" class="page-image">
+                    </a>
+                    <div class="page-caption"><span class="page-num">2</span>PINN閸樼喓鎮�</div>
+                </div>
+                <div class="page-item">
+                    <a href="../AI缁夋垹鐖�/transformer-pinn-papers/images/img-03.png" target="_blank">
+                        <img src="../AI缁夋垹鐖�/transformer-pinn-papers/images/img-03.png" alt="缁楋拷3妞わ拷" class="page-image">
+                    </a>
+                    <div class="page-caption"><span class="page-num">3</span>閺嬭埖鐎�閸ワ拷</div>
+                </div>
+                <div class="page-item">
+                    <a href="../AI缁夋垹鐖�/transformer-pinn-papers/images/img-04.png" target="_blank">
+                        <img src="../AI缁夋垹鐖�/transformer-pinn-papers/images/img-04.png" alt="缁楋拷4妞わ拷" class="page-image">
+                    </a>
+                    <div class="page-caption"><span class="page-num">4</span>鐎圭偤鐛欑紒鎾寸亯</div>
+                </div>
+                <div class="page-item">
+                    <a href="../AI缁夋垹鐖�/transformer-pinn-papers/images/img-05.png" target="_blank">
+                        <img src="../AI缁夋垹鐖�/transformer-pinn-papers/images/img-05.png" alt="缁楋拷5妞わ拷" class="page-image">
+                    </a>
+                    <div class="page-caption"><span class="page-num">5</span>鐎佃�勭槷閸掑棙鐎�</div>
+                </div>
+                <div class="page-item">
+                    <a href="../AI缁夋垹鐖�/transformer-pinn-papers/images/img-06.png" target="_blank">
+                        <img src="../AI缁夋垹鐖�/transformer-pinn-papers/images/img-06.png" alt="缁楋拷6妞わ拷" class="page-image">
+                    </a>
+                    <div class="page-caption"><span class="page-num">6</span>鎼存梻鏁ら崷鐑樻珯</div>
+                </div>
+                <div class="page-item">
+                    <a href="../AI缁夋垹鐖�/transformer-pinn-papers/images/img-07.png" target="_blank">
+                        <img src="../AI缁夋垹鐖�/transformer-pinn-papers/images/img-07.png" alt="缁楋拷7妞わ拷" class="page-image">
+                    </a>
+                    <div class="page-caption"><span class="page-num">7</span>濞戝牐鐎虹�圭偤鐛�</div>
+                </div>
+                <div class="page-item">
+                    <a href="../AI缁夋垹鐖�/transformer-pinn-papers/images/img-08.png" target="_blank">
+                        <img src="../AI缁夋垹鐖�/transformer-pinn-papers/images/img-08.png" alt="缁楋拷8妞わ拷" class="page-image">
+                    </a>
+                    <div class="page-caption"><span class="page-num">8</span>閹�鑽ょ波娑撳骸鐫嶉張锟�</div>
+                </div>
+                <div class="page-item">
+                    <a href="../AI缁夋垹鐖�/transformer-pinn-papers/images/img-09.png" target="_blank">
+                        <img src="../AI缁夋垹鐖�/transformer-pinn-papers/images/img-09.png" alt="缁楋拷9妞わ拷" class="page-image">
+                    </a>
+                    <div class="page-caption"><span class="page-num">9</span>閸欏倽锟藉啯鏋冮悮锟�</div>
+                </div>
+            </div>
+        </section>
+    </article>
+    
+    <footer class="article-footer">
+        <p>閺堬拷閸愬懎锟藉湱鏁� Alex 閼凤拷閸斻劌缍婂�楋絿鏁撻幋锟� 璺� 娴犲懍绶垫稉锟芥禍鍝勶拷锔跨瘎閻�鏃傗敀娴ｈ法鏁�</p>
+        <div class="footer-links">
+            <a href="../index.html" class="footer-link">&#8592; 鏉╂柨娲栨＃鏍�銆�</a>
+            <a href="https://mp.weixin.qq.com/s/Ub8sujrxZIllZOAmtvL8EQ" class="footer-link" target="_blank" rel="noopener">閺屻儳婀呴崢鐔告瀮 &#8599;</a>
+        </div>
+    </footer>
+</body>
+</html>
