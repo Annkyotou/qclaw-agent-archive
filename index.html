@@ -50,9 +50,17 @@
     </style>
 </head>
 <body>
-    <header><div class="container"><div class="header-content"><div class="logo"><div class="logo-icon">📚</div><div class="logo-text">Alex 知识库</div></div><div class="stats"><div class="stat-item"><div class="stat-value">8</div><div class="stat-label">已归档</div></div><div class="stat-item"><div class="stat-value">4</div><div class="stat-label">分类</div></div><div class="stat-item"><div class="stat-value">50+</div><div class="stat-label">标签</div></div></div></div></div></header>
+    <header><div class="container"><div class="header-content"><div class="logo"><div class="logo-icon">📚</div><div class="logo-text">Alex 知识库</div></div><div class="stats"><div class="stat-item"><div class="stat-value">9</div><div class="stat-label">已归档</div></div><div class="stat-item"><div class="stat-value">4</div><div class="stat-label">分类</div></div><div class="stat-item"><div class="stat-value">50+</div><div class="stat-label">标签</div></div></div></div></div></header>
     <section class="search-section"><div class="container"><div class="search-box"><span class="search-icon">🔍</span><input type="text" class="search-input" placeholder="搜索文章标题、内容或标签..."></div><div class="filters"><button class="filter-btn active">全部</button><button class="filter-btn">AI科技</button><button class="filter-btn">AI科研</button><button class="filter-btn">自动驾驶</button><button class="filter-btn">工程技术</button><button class="filter-btn">科研基金</button></div></div></section>
     <main><div class="container"><h2 class="section-title">最近归档</h2><div class="article-grid">
+
+        <article class="article-card" data-category="AI科技" onclick="window.location.href='articles/ARC-20260425-009/ARC-20260425-009.html'">
+            <img src="articles/ARC-20260425-009/images/screenshot-full.png" alt="封面" class="card-image">
+            <div class="card-content"><div class="card-meta"><span class="platform-badge"><span>📷</span>小红书</span><span class="date-badge">2026-04-16</span></div>
+            <h3 class="card-title">LLM已经不性感了，越来越觉得LeCun 与李飞</h3>
+            <p class="card-summary">世界模型新思路：LeCun 提出 JEPA 架构通过"心智模拟"理解现实，李飞飞 World Labs 开发 3D 空间智能。2026 年 AI 趋势从"文本模型"转向"物理AI"，蓝海在具身智能、工业孪生、机器人仿真。</p>
+            <div class="card-tags"><span class="tag">世界模型</span><span class="tag">JEPA</span><span class="tag">具身智能</span><span class="tag">李飞飞</span></div></div>
+        </article>
 
         <article class="article-card" data-category="AI科研" onclick="window.location.href='articles/ARC-20260424-008/ARC-20260424-008.html'">
             <img src="articles/ARC-20260424-008/images/screenshot-page1.png" alt="封面" class="card-image">
@@ -119,7 +127,7 @@
         </article>
 
     </div><div id="noResults" class="no-results" style="display:none;">🔍 没有找到匹配的文章</div></div></main>
-    <footer><div class="container"><p>由 <a href="#">Alex</a> 自动归档生成 · 最后更新 2026-04-25</p><p style="margin-top: 0.5rem; opacity: 0.7;">所有内容仅供个人学习研究使用</p></div></footer>
+    <footer><div class="container"><p>由 <a href="#">Alex</a> 自动归档生成 · 最后更新 2026-04-25（收录小红书）</p><p style="margin-top: 0.5rem; opacity: 0.7;">所有内容仅供个人学习研究使用</p></div></footer>
     <script>
     (function() {
         const searchInput = document.querySelector('.search-input');
