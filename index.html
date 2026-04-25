@@ -27,6 +27,8 @@
         .filters { display: flex; justify-content: center; gap: 0.5rem; flex-wrap: wrap; }
         .filter-btn { padding: 0.5rem 1rem; background: transparent; border: 1px solid var(--border); border-radius: 20px; color: var(--text-secondary); font-size: 0.875rem; cursor: pointer; transition: all 0.3s; }
         .filter-btn:hover, .filter-btn.active { background: var(--accent); border-color: var(--accent); color: white; }
+        .article-card.hidden { display: none; }
+        .no-results { text-align: center; padding: 3rem; color: var(--text-secondary); font-size: 1.125rem; }
         main { padding: 2rem 0; }
         .section-title { font-size: 1.25rem; font-weight: 600; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
         .section-title::before { content: ''; width: 4px; height: 24px; background: var(--accent); border-radius: 2px; }
@@ -52,7 +54,7 @@
     <section class="search-section"><div class="container"><div class="search-box"><span class="search-icon">🔍</span><input type="text" class="search-input" placeholder="搜索文章标题、内容或标签..."></div><div class="filters"><button class="filter-btn active">全部</button><button class="filter-btn">AI科技</button><button class="filter-btn">AI科研</button><button class="filter-btn">自动驾驶</button><button class="filter-btn">工程技术</button><button class="filter-btn">科研基金</button></div></div></section>
     <main><div class="container"><h2 class="section-title">最近归档</h2><div class="article-grid">
 
-        <article class="article-card" onclick="window.location.href='articles/ARC-20260424-008/ARC-20260424-008.html'">
+        <article class="article-card" data-category="AI科研" onclick="window.location.href='articles/ARC-20260424-008/ARC-20260424-008.html'">
             <img src="articles/ARC-20260424-008/images/screenshot-page1.png" alt="封面" class="card-image">
             <div class="card-content"><div class="card-meta"><span class="platform-badge"><span>📱</span>微信公众号</span><span class="date-badge">2026-04-24</span></div>
             <h3 class="card-title">拿下Nature和Science正刊！PINN机器学习全新突破！</h3>
@@ -60,7 +62,7 @@
             <div class="card-tags"><span class="tag">PINN</span><span class="tag">Nature</span><span class="tag">Science</span><span class="tag">综述</span></div></div>
         </article>
 
-        <article class="article-card" onclick="window.location.href='articles/ARC-20260423-007.html'">
+        <article class="article-card" data-category="自动驾驶" onclick="window.location.href='articles/ARC-20260423-007.html'">
             <img src="自动驾驶/unidrive-vla-hust-xiaomi/images/img-01.jpg" alt="封面" class="card-image">
             <div class="card-content"><div class="card-meta"><span class="platform-badge"><span>📱</span>微信公众号</span><span class="date-badge">2026-04-17</span></div>
             <h3 class="card-title">理解、感知、规划三位一体！华科大&小米发布UniDriveVLA</h3>
@@ -68,7 +70,7 @@
             <div class="card-tags"><span class="tag">自动驾驶</span><span class="tag">VLA</span><span class="tag">华科大</span><span class="tag">小米</span></div></div>
         </article>
 
-        <article class="article-card" onclick="window.location.href='articles/ARC-20260423-006.html'">
+        <article class="article-card" data-category="工程技术" onclick="window.location.href='articles/ARC-20260423-006.html'">
             <img src="工程技术/civil-engineering-graphical-abstracts-24/images/img-01.jpg" alt="封面" class="card-image">
             <div class="card-content"><div class="card-meta"><span class="platform-badge"><span>📱</span>微信公众号</span><span class="date-badge">2025-12-12</span></div>
             <h3 class="card-title">土木工程领域期刊图形摘要欣赏（二十四）</h3>
@@ -76,7 +78,7 @@
             <div class="card-tags"><span class="tag">土木工程</span><span class="tag">SCI期刊</span><span class="tag">图形摘要</span></div></div>
         </article>
 
-        <article class="article-card" onclick="window.location.href='articles/ARC-20260423-005.html'">
+        <article class="article-card" data-category="AI科技" onclick="window.location.href='articles/ARC-20260423-005.html'">
             <img src="AI科技/alibaba-world-model-happy-oyster/images/img-01.jpg" alt="封面" class="card-image">
             <div class="card-content"><div class="card-meta"><span class="platform-badge"><span>📱</span>微信公众号</span><span class="date-badge">2026-04-18</span></div>
             <h3 class="card-title">谷歌向左、李飞飞往右，阿里世界模型「快乐生蚝」杀出第三条路</h3>
@@ -84,7 +86,7 @@
             <div class="card-tags"><span class="tag">世界模型</span><span class="tag">阿里巴巴</span><span class="tag">多模态</span></div></div>
         </article>
 
-        <article class="article-card" onclick="window.location.href='articles/ARC-20260423-004.html'">
+        <article class="article-card" data-category="AI科技" onclick="window.location.href='articles/ARC-20260423-004.html'">
             <img src="AI科技/spatial-intelligence-ipo/images/img-01.jpg" alt="封面" class="card-image">
             <div class="card-content"><div class="card-meta"><span class="platform-badge"><span>📱</span>微信公众号</span><span class="date-badge">2026-04-17</span></div>
             <h3 class="card-title">空间智能第一股，开盘暴涨171%！李飞飞押注的赛道</h3>
@@ -92,7 +94,7 @@
             <div class="card-tags"><span class="tag">空间智能</span><span class="tag">李飞飞</span><span class="tag">上市</span><span class="tag">杭州六小龙</span></div></div>
         </article>
 
-        <article class="article-card" onclick="window.location.href='articles/ARC-20260423-003.html'">
+        <article class="article-card" data-category="AI科研" onclick="window.location.href='articles/ARC-20260423-003.html'">
             <img src="AI科研/lingbot-map-3d-reconstruction/images/img-01.jpg" alt="封面" class="card-image">
             <div class="card-content"><div class="card-meta"><span class="platform-badge"><span>📱</span>微信公众号</span><span class="date-badge">2026-04-21</span></div>
             <h3 class="card-title">狂跑一万帧丝滑不崩！拿着几十块单摄走一圈，整栋楼3D地图建好了</h3>
@@ -100,7 +102,7 @@
             <div class="card-tags"><span class="tag">SLAM</span><span class="tag">3D重建</span><span class="tag">具身智能</span><span class="tag">蚂蚁灵波</span></div></div>
         </article>
 
-        <article class="article-card" onclick="window.location.href='articles/ARC-20260423-002.html'">
+        <article class="article-card" data-category="AI科研" onclick="window.location.href='articles/ARC-20260423-002.html'">
             <img src="AI科研/transformer-pinn-papers/images/img-01.jpg" alt="封面" class="card-image">
             <div class="card-content"><div class="card-meta"><span class="platform-badge"><span>📱</span>微信公众号</span><span class="date-badge">2026-03-31</span></div>
             <h3 class="card-title">Transformer+PINN：登Nature子刊新突破！！</h3>
@@ -108,7 +110,7 @@
             <div class="card-tags"><span class="tag">Transformer</span><span class="tag">PINN</span><span class="tag">Nature</span><span class="tag">科学计算</span></div></div>
         </article>
 
-        <article class="article-card" onclick="window.location.href='articles/ARC-20260423-001.html'">
+        <article class="article-card" data-category="科研基金" onclick="window.location.href='articles/ARC-20260423-001.html'">
             <img src="科研基金/images/content-01.png" alt="封面" class="card-image">
             <div class="card-content"><div class="card-meta"><span class="platform-badge"><span>📱</span>微信公众号</span><span class="date-badge">2026-03-17</span></div>
             <h3 class="card-title">分享一篇2026国自然申请书！</h3>
@@ -116,7 +118,54 @@
             <div class="card-tags"><span class="tag">国自然</span><span class="tag">NSFC</span><span class="tag">低空智联网</span><span class="tag">申请书</span></div></div>
         </article>
 
-    </div></div></main>
+    </div><div id="noResults" class="no-results" style="display:none;">🔍 没有找到匹配的文章</div></div></main>
     <footer><div class="container"><p>由 <a href="#">Alex</a> 自动归档生成 · 最后更新 2026-04-25</p><p style="margin-top: 0.5rem; opacity: 0.7;">所有内容仅供个人学习研究使用</p></div></footer>
+    <script>
+    (function() {
+        const searchInput = document.querySelector('.search-input');
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const articleCards = document.querySelectorAll('.article-card');
+        const noResults = document.getElementById('noResults');
+
+        let currentCategory = '全部';
+        let currentSearch = '';
+
+        function filterArticles() {
+            let visibleCount = 0;
+            articleCards.forEach(card => {
+                const category = card.getAttribute('data-category');
+                const title = card.querySelector('.card-title').textContent.toLowerCase();
+                const summary = card.querySelector('.card-summary').textContent.toLowerCase();
+                const tags = Array.from(card.querySelectorAll('.tag')).map(t => t.textContent.toLowerCase());
+                const searchLower = currentSearch.toLowerCase();
+
+                const matchCategory = currentCategory === '全部' || category === currentCategory;
+                const matchSearch = currentSearch === '' || title.includes(searchLower) || summary.includes(searchLower) || tags.some(t => t.includes(searchLower));
+
+                if (matchCategory && matchSearch) {
+                    card.classList.remove('hidden');
+                    visibleCount++;
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+            noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+        }
+
+        searchInput.addEventListener('input', function() {
+            currentSearch = this.value.trim();
+            filterArticles();
+        });
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                currentCategory = this.textContent;
+                filterArticles();
+            });
+        });
+    })();
+    </script>
 </body>
 </html>
