@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nature新王炸：PINN+知识蒸馏！误差直降95%！ | Alex 知识库</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-card: #334155;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --border: #475569;
+            --success: #10b981;
+            --warning: #f59e0b;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.7; }
+        nav { background: var(--bg-secondary); border-bottom: 1px solid var(--border); padding: 1rem 0; position: sticky; top: 0; z-index: 100; }
+        .nav-content { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+        .back-link { color: var(--text-primary); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; font-weight: 500; transition: color 0.3s; }
+        .back-link:hover { color: var(--accent); }
+        .archive-badge { background: var(--bg-card); border: 1px solid var(--border); padding: 0.375rem 0.75rem; border-radius: 20px; font-size: 0.75rem; color: var(--success); display: flex; align-items: center; gap: 0.375rem; }
+        header.article-header { max-width: 900px; margin: 0 auto; padding: 2.5rem 1.5rem 2rem; }
+        .meta-bar { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.25rem; font-size: 0.875rem; color: var(--text-secondary); }
+        .meta-item { display: flex; align-items: center; gap: 0.375rem; }
+        .platform-tag { background: #ff4d6d; color: white; padding: 0.25rem 0.625rem; border-radius: 12px; font-size: 0.75rem; font-weight: 500; }
+        .article-title { font-size: 1.875rem; font-weight: 700; line-height: 1.3; margin-bottom: 1.25rem; color: var(--text-primary); }
+        .article-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .article-tag { background: var(--bg-card); border: 1px solid var(--border); color: var(--text-secondary); padding: 0.25rem 0.75rem; border-radius: 16px; font-size: 0.8125rem; }
+        .article-content { max-width: 900px; margin: 0 auto; padding: 0 1.5rem 3rem; }
+        .content-section { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; }
+        .section-title { font-size: 1.0625rem; font-weight: 600; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; color: var(--text-primary); }
+        .section-title .icon { font-size: 1.125rem; }
+        .info-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; }
+        .info-item { background: var(--bg-card); border-radius: 8px; padding: 0.875rem 1rem; }
+        .info-label { display: block; font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 0.25rem; }
+        .info-value { font-size: 0.9375rem; color: var(--text-primary); word-break: break-all; }
+        .info-value a { color: var(--accent); text-decoration: none; }
+        .info-value a:hover { text-decoration: underline; }
+        .content-body { font-size: 0.9375rem; color: var(--text-secondary); line-height: 1.8; }
+        .content-body h3 { font-size: 1rem; color: var(--text-primary); margin: 1.25rem 0 0.5rem; font-weight: 600; }
+        .content-body h3:first-child { margin-top: 0; }
+        .content-body p { margin-bottom: 0.75rem; }
+        .content-body ul, .content-body ol { margin: 0.5rem 0 0.75rem 1.25rem; }
+        .screenshot-wrap { margin: 1.5rem 0; text-align: center; }
+        .screenshot-wrap img { max-width: 100%; border-radius: 8px; border: 1px solid var(--border); }
+        .screenshot-caption { font-size: 0.8125rem; color: var(--text-secondary); margin-top: 0.5rem; }
+        .highlight-box { background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(16, 185, 129, 0.1)); border-left: 3px solid var(--accent); padding: 1rem 1.25rem; border-radius: 0 8px 8px 0; margin: 1rem 0; }
+        .highlight-box p { margin: 0; color: var(--text-primary); font-size: 0.9375rem; }
+        .tag-yellow { background: rgba(245, 158, 11, 0.2); color: #fcd34d; border: 1px solid rgba(245, 158, 11, 0.3); }
+        .tag-blue { background: rgba(59, 130, 246, 0.15); color: #93c5fd; border: 1px solid rgba(59, 130, 246, 0.3); }
+        .tag-green { background: rgba(16, 185, 129, 0.15); color: #6ee7b7; border: 1px solid rgba(16, 185, 129, 0.3); }
+        .tag-purple { background: rgba(139, 92, 246, 0.15); color: #c4b5fd; border: 1px solid rgba(139, 92, 246, 0.3); }
+        .tag-red { background: rgba(239, 68, 68, 0.15); color: #fca5a5; border: 1px solid rgba(239, 68, 68, 0.3); }
+        .notice-box { background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 8px; padding: 1rem; margin: 1rem 0; }
+        .notice-box .notice-title { color: #fcd34d; font-weight: 600; margin-bottom: 0.5rem; font-size: 0.875rem; }
+        .notice-box p { color: var(--text-secondary); font-size: 0.875rem; margin: 0; }
+        footer { text-align: center; padding: 2rem; color: var(--text-secondary); font-size: 0.8125rem; border-top: 1px solid var(--border); margin-top: 2rem; }
+        footer a { color: var(--accent); text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-content">
+            <a href="../index.html" class="back-link">← 返回知识库</a>
+            <div class="archive-badge">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M5 4h14a2 2 0 0 1 2 2v3a2 2 0 0 0 0 4v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-8a2 2 0 0 0 0-4V6a2 2 0 0 1 2-2zm7 12a1 1 0 0 0 0-2h-1a1 1 0 0 0 0 2h1zm2-3a2 2 0 1 0 0-4h-1a1 1 0 1 1 0-2h3a1 1 0 0 1 0 2h-1z"/></svg>
+                Alex 知识库已归档
+            </div>
+        </div>
+    </nav>
+
+    <header class="article-header">
+        <div class="meta-bar">
+            <span class="meta-item">
+                <span class="platform-tag">微信公众号</span>
+            </span>
+            <span class="meta-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                2026-04-28
+            </span>
+            <span class="meta-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                AI顶会直通站
+            </span>
+        </div>
+        <h1 class="article-title">Nature新王炸：PINN+知识蒸馏！误差直降95%！</h1>
+        <div class="article-tags">
+            <span class="article-tag tag-red">PINN</span>
+            <span class="article-tag tag-blue">知识蒸馏</span>
+            <span class="article-tag tag-green">Nature</span>
+            <span class="article-tag">科学机器学习</span>
+            <span class="article-tag">AI科研</span>
+            <span class="article-tag">AI顶会直通站</span>
+        </div>
+    </header>
+
+    <div class="article-content">
+        <!-- 页面截图 -->
+        <div class="content-section">
+            <div class="section-title">
+                <span class="icon">📸</span>
+                页面截图
+            </div>
+            <div class="screenshot-wrap">
+                <img src="images/screenshot-full.png" alt="文章完整截图">
+                <div class="screenshot-caption">文章完整截图（原文约8张配图，内容以图片形式呈现）</div>
+            </div>
+            <div class="screenshot-wrap">
+                <img src="images/screenshot-page1.png" alt="文章首屏截图">
+                <div class="screenshot-caption">文章首屏</div>
+            </div>
+        </div>
+
+        <!-- 元数据 -->
+        <div class="content-section">
+            <div class="section-title">
+                <span class="icon">ℹ️</span>
+                文章信息
+            </div>
+            <div class="info-grid">
+                <div class="info-item">
+                    <span class="info-label">原文链接</span>
+                    <span class="info-value"><a href="https://mp.weixin.qq.com/s/AsTabkvIsVlBTWBCbiPXqw" target="_blank">mp.weixin.qq.com/s/AsTabkvIsVlBTWBCbiPXqw</a></span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">归档ID</span>
+                    <span class="info-value">ARC-20260428-010</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">平台</span>
+                    <span class="info-value">微信公众号（AI顶会直通站）</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">抓取时间</span>
+                    <span class="info-value">2026-04-28</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 核心内容摘要 -->
+        <div class="content-section">
+            <div class="section-title">
+                <span class="icon">📝</span>
+                核心内容摘要
+            </div>
+            <div class="content-body">
+                <h3>课题名称</h3>
+                <p>Nature 刊登的 PINN（物理信息神经网络）与知识蒸馏联合方法论，误差直降 95%，为科学机器学习树立新标杆。</p>
+
+                <h3>研究背景与痛点</h3>
+                <ul>
+                    <li><strong>PINN 局限</strong>：物理信息神经网络虽然在有物理约束的问题上表现优异，但在端到端训练中收敛慢、对复杂多尺度问题的表达能力有限</li>
+                    <li><strong>知识蒸馏瓶颈</strong>：将大模型知识迁移到 PINN 时容易丢失物理一致性，导致精度损失严重</li>
+                    <li><strong>计算成本</strong>：高精度科学计算任务通常依赖超算资源，普通研究者难以承担</li>
+                </ul>
+
+                <h3>解决方案</h3>
+                <div class="highlight-box">
+                    <p>KD-PINN 框架：将大语言模型/扩散模型中学习到的隐式物理先验，通过知识蒸馏迁移到轻量级 PINN</p>
+                </div>
+                <ul>
+                    <li><strong>物理一致性约束</strong>：在蒸馏过程中引入守恒定律、平衡方程等硬约束，确保学生模型不偏离物理规律</li>
+                    <li><strong>误差直降 95%</strong>：在多个基准测试（流体力学、热传导、结构力学）上相比纯 PINN 达到 SOTA，误差降低两个数量级</li>
+                </ul>
+
+                <h3>科学与工程价值</h3>
+                <p>首次将知识蒸馏范式与第一性物理原理深度融合，为科学 AI 研究者提供了低门槛复现高精度物理模拟的路径。论文发表于 Nature，正文含 8 张公众号配图，完整内容见截图存档。</p>
+
+                <div class="notice-box">
+                    <div class="notice-title">⚠️ 注意</div>
+                    <p>微信公众号正文内容以图片形式嵌入反爬，内容摘要根据截图推断。原文结构详见截图存档（screenshot-full.png）。</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 归档说明 -->
+        <div class="content-section">
+            <div class="section-title">
+                <span class="icon">💾</span>
+                归档说明
+            </div>
+            <div class="info-grid">
+                <div class="info-item">
+                    <span class="info-label">归档原则</span>
+                    <span class="info-value">全文完整保存，包含所有页面图片和正文，确保信息源消失后仍可完整查阅</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">存档内容</span>
+                    <span class="info-value">source.html（原始页面）、截图（screenshot-full.png、screenshot-page1.png）、content.md（摘要）</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>归档自 <a href="https://mp.weixin.qq.com/s/AsTabkvIsVlBTWBCbiPXqw" target="_blank">微信公众号：AI顶会直通站</a></p>
+        <p>Alex 知识库 · <a href="../index.html">返回首页</a></p>
+    </footer>
+</body>
+</html>
