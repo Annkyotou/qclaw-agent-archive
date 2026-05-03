@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3DGS + AR Pipeline: Turning Everyday Photos into 3D Memories | Alex 知识库</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-primary: #0f172a; --bg-secondary: #1e293b; --bg-card: #334155; --text-primary: #f8fafc; --text-secondary: #94a3b8; --accent: #3b82f6; --accent-hover: #2563eb; --border: #475569; --success: #10b981; --warning: #f59e0b; }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family: 'Inter','Noto Sans SC',-apple-system,BlinkMacSystemFont,sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.7; }
+        nav { background: var(--bg-secondary); border-bottom: 1px solid var(--border); padding: 1rem 0; position: sticky; top:0; z-index: 100; }
+        .nav-content { max-width: 1200px; margin:0 auto; padding: 0 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+        .back-link { display: flex; align-items: center; gap: 0.5rem; color: var(--text-secondary); text-decoration: none; font-size: 0.875rem; transition: color 0.3s; }
+        .back-link:hover { color: var(--accent); }
+        .archive-badge { display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: rgba(16,185,129,0.1); border: 1px solid var(--success); border-radius: 20px; color: var(--success); font-size: 0.75rem; font-weight: 500; }
+        .article-header { max-width: 1200px; margin:0 auto; padding: 3rem 1.5rem 2rem; }
+        .meta-bar { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem; }
+        .meta-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; color: var(--text-secondary); }
+        .platform-tag { padding: 0.25rem 0.75rem; background: rgba(59,130,246,0.1); color: var(--accent); border-radius: 4px; font-weight: 500; }
+        .article-title { font-size: 2rem; font-weight: 700; line-height: 1.3; margin-bottom: 1.5rem; }
+        .article-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .article-tag { padding: 0.375rem 0.75rem; background: var(--bg-card); border-radius: 20px; font-size: 0.75rem; color: var(--text-secondary); }
+        .article-content { max-width: 1200px; margin:0 auto; padding: 0 1.5rem 3rem; }
+        .content-section { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; }
+        .section-title { font-size: 1.25rem; font-weight: 600; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.5rem; }
+        .section-title .icon { font-size: 1.5rem; }
+        .info-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1rem; }
+        .info-item { display: flex; flex-direction: column; gap: 0.25rem; }
+        .info-label { font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; }
+        .info-value { font-size: 0.9375rem; color: var(--text-primary); }
+        .info-value a { color: var(--accent); text-decoration: none; }
+        .info-value a:hover { text-decoration: underline; }
+        .content-body { font-size: 1rem; line-height: 1.8; }
+        .content-body p { margin-bottom: 1rem; white-space: pre-line; }
+        .content-body a { color: var(--accent); }
+        .screenshot-section { margin-top: 1.5rem; }
+        .screenshot-img { width: 100%; border-radius: 8px; border: 1px solid var(--border); }
+        footer { background: var(--bg-secondary); border-top: 1px solid var(--border); padding: 2rem 0; text-align: center; color: var(--text-secondary); font-size: 0.875rem; margin-top: 2rem; }
+        footer a { color: var(--accent); text-decoration: none; }
+        @media (max-width: 768px) { .article-title { font-size: 1.5rem; } .info-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <nav><div class="nav-content"><a href="../../index.html" class="back-link">&larr; 返回首页</a><div class="archive-badge">✅ 已归档 &middot; ARC-20260503-013</div></div></nav>
+    <article>
+        <header class="article-header">
+            <div class="meta-bar">
+                <span class="platform-tag">🐦 X (Twitter)</span>
+                <span class="meta-item">📅 2026-05-02</span>
+                <span class="meta-item">👤 Takashi Yoshinaga (@Tks_Yoshinaga)</span>
+            </div>
+            <h1 class="article-title">3DGS + AR Pipeline: Turning Everyday Photos into 3D Memories</h1>
+            <div class="article-tags"><span class="article-tag">3D Gaussian Splatting</span><span class="article-tag">AR</span><span class="article-tag">NeRF</span><span class="article-tag">3D</span><span class="article-tag">三维重建</span></div>
+        </header>
+        <div class="article-content">
+            <section class="content-section">
+                <h2 class="section-title"><span class="icon">📝</span>推文内容</h2>
+                <div class="content-body">
+                    <p>Testing a pipeline:
+Regular photos → 3D Gaussian Splatting → AR viewing.
+
+Turning everyday memories into 3D is surprisingly compelling. It even works with old film photos.
+
+One fun discovery: in the second example, objects composited in AR also show up in 3D.
+
+#gaussiansplatting</p>
+                </div>
+            </section>
+            <section class="content-section">
+                <h2 class="section-title"><span class="icon">📸</span>截图</h2>
+                <img src="images/screenshot-full.png" alt="推文全屏截图" class="screenshot-img">
+            </section>
+            <section class="content-section">
+                <h2 class="section-title"><span class="icon">ℹ️</span>归档信息</h2>
+                <div class="info-grid">
+                    <div class="info-item"><span class="info-label">归档 ID</span><span class="info-value">ARC-20260503-013</span></div>
+                    <div class="info-item"><span class="info-label">平台</span><span class="info-value">X (Twitter)</span></div>
+                    <div class="info-item"><span class="info-label">作者</span><span class="info-value">Takashi Yoshinaga (@Tks_Yoshinaga)</span></div>
+                    <div class="info-item"><span class="info-label">发布日期</span><span class="info-value">2026-05-02</span></div>
+                    <div class="info-item"><span class="info-label">原文链接</span><span class="info-value"><a href="https://x.com/Tks_Yoshinaga/status/2050447703021326809" target="_blank" rel="noopener">X.com 链接</a></span></div>
+                </div>
+            </section>
+        </div>
+    </article>
+    <footer><div class="container"><p>由 <a href="#">Alex</a> 自动归档生成 &middot; 抓取时间 2026-05-03</p><p style="margin-top: 0.5rem; opacity: 0.7;">所有内容仅供个人学习研究使用</p></div></footer>
+</body>
+</html>

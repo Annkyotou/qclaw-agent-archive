@@ -1,0 +1,8 @@
+author: Takashi Yoshinaga
+date: 2026-05-02T05:30:02.000Z
+text: Testing a pipeline: 
+Regular photos → 3D Gaussian Splatting → AR viewing.
+Turning everyday memories into 3D is surprisingly compelling. It even works with old film photos.
+One fun discovery: in the second example, objects composited in AR also show up in 3D.
+#gaussiansplatting
+url: https://x.com/Tks_Yoshinaga/status/2050447703021326809
