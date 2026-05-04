@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CULTURE3D: Cultural Landmarks and Terrain Dataset for 3D Applications | Alex 知识库</title>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:#0f0f14;color:#d4d4dc;line-height:1.7;min-height:100vh}
+    a{color:#7ec8e3;text-decoration:none}a:hover{color:#a0d8f0;text-decoration:underline}
+    .container{max-width:960px;margin:0 auto;padding:24px 20px 48px}
+    header{border-bottom:1px solid #2a2a38;padding-bottom:20px;margin-bottom:24px}
+    header a.back{display:inline-block;color:#8888a0;font-size:14px;margin-bottom:12px}
+    header h1{font-size:22px;font-weight:700;color:#e8e8f0;line-height:1.4}
+    .meta-bar{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:10px;font-size:13px;color:#8888a0}
+    .meta-bar span{background:#1a1a28;padding:2px 10px;border-radius:4px}
+    .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+    .article-tag{font-size:11px;background:#1e2d3d;color:#7ec8e3;padding:2px 8px;border-radius:3px}
+    .section{margin:32px 0}
+    .section-title{font-size:18px;font-weight:600;color:#c0c0d0;margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid #1e1e2e}
+    .summary{background:#141420;border:1px solid #222236;border-radius:10px;padding:24px}
+    .summary h4{font-size:15px;color:#e0b060;margin:16px 0 8px}
+    .summary h4:first-child{margin-top:0}
+    .summary p{font-size:15px;color:#c0c0cc;line-height:1.8;margin-bottom:8px}
+    .info-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px}
+    .info-item{background:#1a1a28;padding:10px 14px;border-radius:6px;font-size:14px;color:#a0a0b8}
+    .info-item strong{color:#e0b060;margin-right:6px}
+    .screenshot-wrap{text-align:center}
+    .screenshot-wrap img{max-width:100%;border-radius:8px;border:1px solid #2a2a38}
+    .screenshot-caption{margin-top:8px;font-size:12px;color:#707088}
+    .page-gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+    .page-item{text-align:center}
+    .page-item img{width:100%;border-radius:6px;border:1px solid #2a2a38}
+    footer{margin-top:48px;padding-top:20px;border-top:1px solid #2a2a38;font-size:12px;color:#666680;text-align:center}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <a class="back" href="../../index.html">← 返回首页</a>
+      <h1>CULTURE3D: Cultural Landmarks and Terrain Dataset for 3D Applications</h1>
+      <div class="meta-bar">
+        <span> 📅 2026-05-04</span>
+        <span> 📝 X-Intelligence-Labs</span>
+        <span> 📦 GitHub</span>
+      </div>
+      <div class="tags">
+        <span class="article-tag">3D重建</span><span class="article-tag">数据集</span><span class="article-tag">文化遗产</span><span class="article-tag">高斯泼溅</span><span class="article-tag">VR</span><span class="article-tag">开源</span>
+      </div>
+    </header>
+
+    <div class="section">
+      <h2 class="section-title">📝 内容摘要</h2>
+      <div class="summary">
+        <p><h4>课题名称：</h4> CULTURE3D：面向3D应用的文化地标与地形数据集</p>
+<p><h4>研究背景与痛点：</h4> 3D重建、定位和VR应用缺乏大规模、高精度、细粒度的真实世界3D数据集。现有数据集覆盖范围有限，难以支持NeRF、3D Gaussian Splatting等前沿方法的benchmark评估和文化遗产数字化保护。</p>
+<p><h4>解决方案：</h4> X-Intelligence-Labs发布了CULTURE3D数据集，包含全球11个标志性文化遗产的高分辨率3D扫描数据（白金汉宫、剑桥大学、埃及金字塔/狮身人面像、卢浮宫、比萨斜塔、巨石阵、佩特拉古城、特拉法加广场、国家美术馆、紫禁城、龙门石窟）。提供原始高分辨率图像、稠密/稀疏点云(.ply/.pcd)、COLMAP输出、RealityCapture项目、VR就绪3D场景，以及即将发布的Unreal Engine项目。数据通过Google Drive分发，完全开源。</p>
+<p><h4>科学与工程价值：</h4> 为3D重建、定位、语义分割和VR研究提供首个大规模文化遗产基准数据集。支持SLAM、SfM、NeRF和高斯泼溅等方法的标准化评估，推动文化遗产数字化保护与虚拟旅游应用。</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2 class="section-title">ℹ️ 关键信息</h2>
+      <div class="info-grid">
+        <div class="info-item"><strong>ℹ️</strong><span>GitHub仓库：https://github.com/X-Intelligence-Labs/CULTURE3D</span></div>
+        <div class="info-item"><strong>ℹ️</strong><span>论文：Arxiv (即将更新)</span></div>
+        <div class="info-item"><strong>ℹ️</strong><span>数据集：Google Drive (完全开源)</span></div>
+        <div class="info-item"><strong>ℹ️</strong><span>包含11个地标：白金汉宫、剑桥大学、埃及金字塔、卢浮宫、比萨斜塔、巨石阵、佩特拉、特拉法加广场、国家美术馆、紫禁城、龙门石窟</span></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2 class="section-title">🖼️ 图集</h2>
+      <div class="page-gallery">
+        <div class="page-item">
+          <img src="images/img-02.png" alt="配图 1" loading="lazy" />
+        </div>
+        <div class="page-item">
+          <img src="images/img-03.png" alt="配图 2" loading="lazy" />
+        </div>
+        <div class="page-item">
+          <img src="images/img-04.png" alt="配图 3" loading="lazy" />
+        </div>
+        <div class="page-item">
+          <img src="images/img-05.png" alt="配图 4" loading="lazy" />
+        </div>
+        <div class="page-item">
+          <img src="images/img-06.png" alt="配图 5" loading="lazy" />
+        </div>
+        <div class="page-item">
+          <img src="images/img-07.png" alt="配图 6" loading="lazy" />
+        </div>
+        <div class="page-item">
+          <img src="images/img-08.png" alt="配图 7" loading="lazy" />
+        </div>
+        <div class="page-item">
+          <img src="images/img-09.png" alt="配图 8" loading="lazy" />
+        </div>
+        <div class="page-item">
+          <img src="images/img-10.png" alt="配图 9" loading="lazy" />
+        </div>
+        <div class="page-item">
+          <img src="images/img-11.png" alt="配图 10" loading="lazy" />
+        </div>
+        <div class="page-item">
+          <img src="images/img-12.png" alt="配图 11" loading="lazy" />
+        </div>
+        <div class="page-item">
+          <img src="images/img-13.png" alt="配图 12" loading="lazy" />
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2 class="section-title">📷 截图存档</h2>
+      <div class="screenshot-wrap">
+        <img src="images/screenshot-full.png" alt="全文截图" loading="lazy" />
+        <div class="screenshot-caption">☠️ 全文截图</div>
+      </div>
+
+    <footer>
+      <p>Alex 知识库 &middot; ARC-20260504-014 &middot; GitHub</p>
+      <p style="margin-top:4px"><a href="https://github.com/X-Intelligence-Labs/CULTURE3D" target="_blank" rel="noopener">🔗 原文链接</a></p>
+      <p style="margin-top:4px">归档日期：2026-05-04</p>
+    </footer>
+  </div>
+</body>
+</html>

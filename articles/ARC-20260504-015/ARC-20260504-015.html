@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NLP 学习笔记 II —— BERT | Alex 知识库</title>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:#0f0f14;color:#d4d4dc;line-height:1.7;min-height:100vh}
+    a{color:#7ec8e3;text-decoration:none}a:hover{color:#a0d8f0;text-decoration:underline}
+    .container{max-width:960px;margin:0 auto;padding:24px 20px 48px}
+    header{border-bottom:1px solid #2a2a38;padding-bottom:20px;margin-bottom:24px}
+    header a.back{display:inline-block;color:#8888a0;font-size:14px;margin-bottom:12px}
+    header h1{font-size:22px;font-weight:700;color:#e8e8f0;line-height:1.4}
+    .meta-bar{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:10px;font-size:13px;color:#8888a0}
+    .meta-bar span{background:#1a1a28;padding:2px 10px;border-radius:4px}
+    .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+    .article-tag{font-size:11px;background:#1e2d3d;color:#7ec8e3;padding:2px 8px;border-radius:3px}
+    .section{margin:32px 0}
+    .section-title{font-size:18px;font-weight:600;color:#c0c0d0;margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid #1e1e2e}
+    .summary{background:#141420;border:1px solid #222236;border-radius:10px;padding:24px}
+    .summary h4{font-size:15px;color:#e0b060;margin:16px 0 8px}
+    .summary h4:first-child{margin-top:0}
+    .summary p{font-size:15px;color:#c0c0cc;line-height:1.8;margin-bottom:8px}
+    .info-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px}
+    .info-item{background:#1a1a28;padding:10px 14px;border-radius:6px;font-size:14px;color:#a0a0b8}
+    .info-item strong{color:#e0b060;margin-right:6px}
+    .screenshot-wrap{text-align:center}
+    .screenshot-wrap img{max-width:100%;border-radius:8px;border:1px solid #2a2a38}
+    .screenshot-caption{margin-top:8px;font-size:12px;color:#707088}
+    .page-gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+    .page-item{text-align:center}
+    .page-item img{width:100%;border-radius:6px;border:1px solid #2a2a38}
+    footer{margin-top:48px;padding-top:20px;border-top:1px solid #2a2a38;font-size:12px;color:#666680;text-align:center}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <a class="back" href="../../index.html">← 返回首页</a>
+      <h1>NLP 学习笔记 II —— BERT</h1>
+      <div class="meta-bar">
+        <span> 📅 2020-05-29</span>
+        <span> 📝 Reborn</span>
+        <span> 🌐 Blog</span>
+      </div>
+      <div class="tags">
+        <span class="article-tag">NLP</span><span class="article-tag">BERT</span><span class="article-tag">Transformer</span><span class="article-tag">预训练模型</span><span class="article-tag">深度学习</span><span class="article-tag">机器学习</span>
+      </div>
+    </header>
+
+    <div class="section">
+      <h2 class="section-title">📝 内容摘要</h2>
+      <div class="summary">
+        <p><h4>课题名称：</h4> BERT：基于Transformer的双向编码器表示预训练模型</p>
+<p><h4>研究背景与痛点：</h4> NLP领域的一大挑战是训练数据稀缺。每个下游任务（问答、情感分析等）通常只有几千到几十万条标注数据，对深度学习模型远远不够。Word2Vec等传统方法对同一单词给出固定语义表示，无法处理一词多义。</p>
+<p><h4>解决方案：</h4> BERT是一种基于Transformer Encoder的高性能NLP预训练模型。其核心创新包括：(1) 双向Transformer架构，能根据上下文动态提取语义；(2) Masked LM策略——随机遮挡15%词汇让模型预测被遮挡词；(3) Next Sentence Prediction——判断两句话是否语义相接。BERT预训练后可针对不同下游任务微调（文档分类、槽填充/NER、自然语言推断、问答系统等），实现SOTA效果。文章还对比了ELMo、ERNIE、GPT等BERT家族模型。</p>
+<p><h4>科学与工程价值：</h4> BERT是NLP领域的里程碑工作，开创了「预训练+微调」范式。其双向上下文理解能力解决了传统词向量的一词多义问题，为问答系统、情感分析、命名实体识别、自然语言推断等任务提供了统一的高效框架，深刻影响了整个NLP领域的发展方向。</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2 class="section-title">ℹ️ 关键信息</h2>
+      <div class="info-grid">
+        <div class="info-item"><strong>ℹ️</strong><span>原文地址：https://reborn8888.github.io/2020/05/29/NLP-2-BERT/</span></div>
+        <div class="info-item"><strong>ℹ️</strong><span>BERT论文：https://arxiv.org/pdf/1810.04805.pdf</span></div>
+        <div class="info-item"><strong>ℹ️</strong><span>发布日期：2020-05-29</span></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2 class="section-title">🖼️ 图集</h2>
+      <div class="page-gallery">
+        <div class="page-item">
+          <img src="images/img-01.png" alt="配图 1" loading="lazy" />
+        </div>
+        <div class="page-item">
+          <img src="images/img-02.png" alt="配图 2" loading="lazy" />
+        </div>
+        <div class="page-item">
+          <img src="images/img-03.png" alt="配图 3" loading="lazy" />
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2 class="section-title">📷 截图存档</h2>
+      <div class="screenshot-wrap">
+        <img src="images/screenshot-full.png" alt="全文截图" loading="lazy" />
+        <div class="screenshot-caption">☠️ 全文截图</div>
+      </div>
+
+    <footer>
+      <p>Alex 知识库 &middot; ARC-20260504-015 &middot; Blog</p>
+      <p style="margin-top:4px"><a href="https://reborn8888.github.io/2020/05/29/NLP-2-BERT/" target="_blank" rel="noopener">🔗 原文链接</a></p>
+      <p style="margin-top:4px">归档日期：2026-05-04</p>
+    </footer>
+  </div>
+</body>
+</html>
