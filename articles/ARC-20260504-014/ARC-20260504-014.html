@@ -1,128 +1,369 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CULTURE3D: Cultural Landmarks and Terrain Dataset for 3D Applications | Alex 知识库</title>
-  <style>
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:#0f0f14;color:#d4d4dc;line-height:1.7;min-height:100vh}
-    a{color:#7ec8e3;text-decoration:none}a:hover{color:#a0d8f0;text-decoration:underline}
-    .container{max-width:960px;margin:0 auto;padding:24px 20px 48px}
-    header{border-bottom:1px solid #2a2a38;padding-bottom:20px;margin-bottom:24px}
-    header a.back{display:inline-block;color:#8888a0;font-size:14px;margin-bottom:12px}
-    header h1{font-size:22px;font-weight:700;color:#e8e8f0;line-height:1.4}
-    .meta-bar{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:10px;font-size:13px;color:#8888a0}
-    .meta-bar span{background:#1a1a28;padding:2px 10px;border-radius:4px}
-    .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
-    .article-tag{font-size:11px;background:#1e2d3d;color:#7ec8e3;padding:2px 8px;border-radius:3px}
-    .section{margin:32px 0}
-    .section-title{font-size:18px;font-weight:600;color:#c0c0d0;margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid #1e1e2e}
-    .summary{background:#141420;border:1px solid #222236;border-radius:10px;padding:24px}
-    .summary h4{font-size:15px;color:#e0b060;margin:16px 0 8px}
-    .summary h4:first-child{margin-top:0}
-    .summary p{font-size:15px;color:#c0c0cc;line-height:1.8;margin-bottom:8px}
-    .info-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px}
-    .info-item{background:#1a1a28;padding:10px 14px;border-radius:6px;font-size:14px;color:#a0a0b8}
-    .info-item strong{color:#e0b060;margin-right:6px}
-    .screenshot-wrap{text-align:center}
-    .screenshot-wrap img{max-width:100%;border-radius:8px;border:1px solid #2a2a38}
-    .screenshot-caption{margin-top:8px;font-size:12px;color:#707088}
-    .page-gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
-    .page-item{text-align:center}
-    .page-item img{width:100%;border-radius:6px;border:1px solid #2a2a38}
-    footer{margin-top:48px;padding-top:20px;border-top:1px solid #2a2a38;font-size:12px;color:#666680;text-align:center}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CULTURE3D: Cultural Landmarks and Terrain Dataset for 3D Applications | Alex 知识库</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-card: #334155;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --border: #475569;
+            --success: #10b981;
+            --warning: #f59e0b;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            font-family: 'Inter','Noto Sans SC',-apple-system,BlinkMacSystemFont,sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+        nav {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 0;
+            position: sticky; top:0; z-index: 100;
+        }
+        .nav-content {
+            max-width: 1200px; margin:0 auto; padding: 0 1.5rem;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .back-link {
+            display: flex; align-items: center; gap: 0.5rem;
+            color: var(--text-secondary); text-decoration: none;
+            font-size: 0.875rem; transition: color 0.3s;
+        }
+        .back-link:hover { color: var(--accent); }
+        .archive-badge {
+            display: flex; align-items: center; gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(16,185,129,0.1);
+            border: 1px solid var(--success);
+            border-radius: 20px;
+            color: var(--success);
+            font-size: 0.75rem; font-weight: 500;
+        }
+        .article-header {
+            max-width: 1200px; margin:0 auto; padding: 3rem 1.5rem 2rem;
+        }
+        .meta-bar {
+            display: flex; flex-wrap: wrap; gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .meta-item {
+            display: flex; align-items: center; gap: 0.5rem;
+            font-size: 0.875rem; color: var(--text-secondary);
+        }
+        .platform-tag {
+            padding: 0.25rem 0.75rem;
+            background: rgba(59,130,246,0.1);
+            color: var(--accent);
+            border-radius: 4px; font-weight: 500;
+        }
+        .article-title {
+            font-size: 2rem; font-weight: 700;
+            line-height: 1.3; margin-bottom: 1.5rem;
+        }
+        .article-tags {
+            display: flex; flex-wrap: wrap; gap: 0.5rem;
+        }
+        .article-tag {
+            padding: 0.375rem 0.75rem;
+            background: var(--bg-card);
+            border-radius: 20px;
+            font-size: 0.75rem; color: var(--text-secondary);
+        }
+        .article-content {
+            max-width: 1200px; margin:0 auto; padding: 0 1.5rem 3rem;
+        }
+        .content-section {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem; margin-bottom: 1.5rem;
+        }
+        .section-title {
+            font-size: 1.25rem; font-weight: 600;
+            margin-bottom: 1.25rem;
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+        .section-title .icon { font-size: 1.5rem; }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+        .info-item {
+            display: flex; flex-direction: column; gap: 0.25rem;
+        }
+        .info-label {
+            font-size: 0.75rem; color: var(--text-secondary);
+            text-transform: uppercase; letter-spacing: 0.05em;
+        }
+        .info-value { font-size: 0.9375rem; color: var(--text-primary); }
+        .info-value a { color: var(--accent); text-decoration: none; }
+        .info-value a:hover { text-decoration: underline; }
+        .content-body { font-size: 1rem; line-height: 1.8; }
+        .content-body h3 {
+            font-size: 1.25rem; font-weight: 600;
+            margin: 2rem 0 1rem; color: var(--accent);
+        }
+        .content-body h3:first-child { margin-top: 0; }
+        .content-body p {
+            margin-bottom: 1rem; color: var(--text-secondary);
+        }
+        .content-body strong { color: var(--text-primary); }
+        .content-body ul {
+            margin: 1rem 0; padding-left: 1.5rem;
+            color: var(--text-secondary);
+        }
+        .content-body li { margin-bottom: 0.5rem; }
+        .gallery-section {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem; margin-bottom: 1.5rem;
+        }
+        .gallery-header {
+            display: flex; justify-content: space-between;
+            align-items: center; margin-bottom: 1.5rem;
+        }
+        .gallery-count {
+            font-size: 0.875rem; color: var(--text-secondary);
+        }
+        .page-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .page-item {
+            background: var(--bg-card);
+            border-radius: 12px; overflow: hidden;
+        }
+        .page-image {
+            width: 100%; height: auto; display: block;
+            cursor: zoom-in; transition: transform 0.3s;
+        }
+        .page-image:hover { transform: scale(1.02); }
+        .page-caption {
+            padding: 1rem; font-size: 0.875rem;
+            color: var(--text-secondary); text-align: center;
+            background: rgba(0,0,0,0.2);
+        }
+        .page-num {
+            display: inline-block;
+            background: var(--accent); color: white;
+            width: 24px; height: 24px; border-radius: 50%;
+            text-align: center; line-height: 24px;
+            font-size: 0.75rem; font-weight: 600;
+            margin-right: 0.5rem;
+        }
+        .article-footer {
+            max-width: 1200px; margin:0 auto;
+            padding: 2rem 1.5rem;
+            border-top: 1px solid var(--border);
+            text-align: center; color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+        .footer-links {
+            display: flex; justify-content: center;
+            gap: 1rem; margin-top: 1rem; flex-wrap: wrap;
+        }
+        .footer-link {
+            padding: 0.5rem 1rem;
+            background: var(--bg-card);
+            border-radius: 8px;
+            color: var(--text-secondary);
+            text-decoration: none; font-size: 0.875rem;
+            transition: all 0.3s;
+        }
+        .footer-link:hover { background: var(--accent); color: white; }
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.5rem; }
+            .content-section { padding: 1.5rem; }
+            .info-grid { grid-template-columns: 1fr; }
+            .page-gallery { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <a class="back" href="../../index.html">← 返回首页</a>
-      <h1>CULTURE3D: Cultural Landmarks and Terrain Dataset for 3D Applications</h1>
-      <div class="meta-bar">
-        <span> 📅 2026-05-04</span>
-        <span> 📝 X-Intelligence-Labs</span>
-        <span> 📦 GitHub</span>
-      </div>
-      <div class="tags">
-        <span class="article-tag">3D重建</span><span class="article-tag">数据集</span><span class="article-tag">文化遗产</span><span class="article-tag">高斯泼溅</span><span class="article-tag">VR</span><span class="article-tag">开源</span>
-      </div>
+    <nav>
+        <div class="nav-content">
+            <a href="../../index.html" class="back-link">
+                <span>&#8592;</span><span>返回知识库</span>
+            </a>
+            <div class="archive-badge">
+                <span>&#10003;</span><span>已完整归档 · ARC-20260504-014</span>
+            </div>
+        </div>
+    </nav>
+    <header class="article-header">
+        <div class="meta-bar">
+            <span class="platform-tag">&#128187; GitHub</span>
+            <span class="meta-item"><span>&#128100;</span><span>X-Intelligence-Labs</span></span>
+            <span class="meta-item"><span>&#128197;</span><span>2026-05-04 发布</span></span>
+            <span class="meta-item"><span>&#128339;</span><span>2026-05-04 归档</span></span>
+        </div>
+        <h1 class="article-title">CULTURE3D: Cultural Landmarks and Terrain Dataset for 3D Applications</h1>
+        <div class="article-tags">
+            <span class="article-tag">3D重建</span>
+            <span class="article-tag">数据集</span>
+            <span class="article-tag">文化遗产</span>
+            <span class="article-tag">高斯泼溅</span>
+            <span class="article-tag">VR</span>
+            <span class="article-tag">开源</span>
+            <span class="article-tag">NeRF</span>
+        </div>
     </header>
+    <article class="article-content">
+        <section class="content-section">
+            <h2 class="section-title"><span class="icon">&#128209;</span>来源信息</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <span class="info-label">GitHub 仓库</span>
+                    <span class="info-value"><a href="https://github.com/X-Intelligence-Labs/CULTURE3D" target="_blank" rel="noopener">github.com/X-Intelligence-Labs/CULTURE3D</a></span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">来源平台</span>
+                    <span class="info-value">GitHub</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">文章ID</span>
+                    <span class="info-value">ARC-20260504-014</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">抓取状态</span>
+                    <span class="info-value"><span style="color: var(--success);">&#10003; 完整归档</span></span>
+                </div>
+            </div>
+        </section>
+        <section class="content-section">
+            <h2 class="section-title"><span class="icon">&#128221;</span>核心内容摘要</h2>
+            <div class="content-body">
+                <h3>课题名称</h3>
+                <p><strong>CULTURE3D：面向3D应用的文化地标与地形数据集</strong></p>
 
-    <div class="section">
-      <h2 class="section-title">📝 内容摘要</h2>
-      <div class="summary">
-        <p><h4>课题名称：</h4> CULTURE3D：面向3D应用的文化地标与地形数据集</p>
-<p><h4>研究背景与痛点：</h4> 3D重建、定位和VR应用缺乏大规模、高精度、细粒度的真实世界3D数据集。现有数据集覆盖范围有限，难以支持NeRF、3D Gaussian Splatting等前沿方法的benchmark评估和文化遗产数字化保护。</p>
-<p><h4>解决方案：</h4> X-Intelligence-Labs发布了CULTURE3D数据集，包含全球11个标志性文化遗产的高分辨率3D扫描数据（白金汉宫、剑桥大学、埃及金字塔/狮身人面像、卢浮宫、比萨斜塔、巨石阵、佩特拉古城、特拉法加广场、国家美术馆、紫禁城、龙门石窟）。提供原始高分辨率图像、稠密/稀疏点云(.ply/.pcd)、COLMAP输出、RealityCapture项目、VR就绪3D场景，以及即将发布的Unreal Engine项目。数据通过Google Drive分发，完全开源。</p>
-<p><h4>科学与工程价值：</h4> 为3D重建、定位、语义分割和VR研究提供首个大规模文化遗产基准数据集。支持SLAM、SfM、NeRF和高斯泼溅等方法的标准化评估，推动文化遗产数字化保护与虚拟旅游应用。</p>
-      </div>
-    </div>
+                <h3>研究背景与痛点</h3>
+                <p>3D重建、定位和VR应用缺乏大规模、高精度、细粒度的真实世界3D数据集。现有数据集覆盖范围有限，难以支持NeRF、3D Gaussian Splatting等前沿方法的benchmark评估和文化遗产数字化保护。</p>
 
-    <div class="section">
-      <h2 class="section-title">ℹ️ 关键信息</h2>
-      <div class="info-grid">
-        <div class="info-item"><strong>ℹ️</strong><span>GitHub仓库：https://github.com/X-Intelligence-Labs/CULTURE3D</span></div>
-        <div class="info-item"><strong>ℹ️</strong><span>论文：Arxiv (即将更新)</span></div>
-        <div class="info-item"><strong>ℹ️</strong><span>数据集：Google Drive (完全开源)</span></div>
-        <div class="info-item"><strong>ℹ️</strong><span>包含11个地标：白金汉宫、剑桥大学、埃及金字塔、卢浮宫、比萨斜塔、巨石阵、佩特拉、特拉法加广场、国家美术馆、紫禁城、龙门石窟</span></div>
-      </div>
-    </div>
+                <h3>解决方案</h3>
+                <p>X-Intelligence-Labs发布了CULTURE3D数据集，包含全球11个标志性文化遗产的高分辨率3D扫描数据：白金汉宫、剑桥大学、埃及金字塔/狮身人面像、卢浮宫、比萨斜塔、巨石阵、佩特拉古城、特拉法加广场、国家美术馆、紫禁城、龙门石窟。</p>
+                <p>数据内容包括：原始高分辨率图像、稠密/稀疏点云（.ply/.pcd）、COLMAP输出、RealityCapture项目、VR就绪3D场景，以及即将发布的Unreal Engine项目。数据通过Google Drive分发，完全开源。</p>
 
-    <div class="section">
-      <h2 class="section-title">🖼️ 图集</h2>
-      <div class="page-gallery">
-        <div class="page-item">
-          <img src="images/img-02.png" alt="配图 1" loading="lazy" />
+                <h3>科学与工程价值</h3>
+                <ul>
+                    <li>为3D重建、定位、语义分割和VR研究提供首个大规模文化遗产基准数据集</li>
+                    <li>支持SLAM、SfM、NeRF和高斯泼溅等方法的标准化评估</li>
+                    <li>推动文化遗产数字化保护与虚拟旅游应用</li>
+                </ul>
+            </div>
+        </section>
+        <section class="gallery-section">
+            <div class="gallery-header">
+                <h2 class="section-title" style="margin-bottom:0"><span class="icon">&#128196;</span>数据集图集</h2>
+                <span class="gallery-count">共12张 · 文化遗产地标预览</span>
+            </div>
+            <div class="page-gallery">
+                <div class="page-item">
+                    <a href="images/img-02.png" target="_blank">
+                        <img src="images/img-02.png" alt="图1" class="page-image">
+                    </a>
+                    <div class="page-caption"><span class="page-num">1</span>数据集概览</div>
+                </div>
+                <div class="page-item">
+                    <a href="images/img-03.png" target="_blank">
+                        <img src="images/img-03.png" alt="图2" class="page-image">
+                    </a>
+                    <div class="page-caption"><span class="page-num">2</span>地标展示</div>
+                </div>
+                <div class="page-item">
+                    <a href="images/img-04.png" target="_blank">
+                        <img src="images/img-04.png" alt="图3" class="page-image">
+                    </a>
+                    <div class="page-caption"><span class="page-num">3</span>地标展示</div>
+                </div>
+                <div class="page-item">
+                    <a href="images/img-05.png" target="_blank">
+                        <img src="images/img-05.png" alt="图4" class="page-image">
+                    </a>
+                    <div class="page-caption"><span class="page-num">4</span>地标展示</div>
+                </div>
+                <div class="page-item">
+                    <a href="images/img-06.png" target="_blank">
+                        <img src="images/img-06.png" alt="图5" class="page-image">
+                    </a>
+                    <div class="page-caption"><span class="page-num">5</span>地标展示</div>
+                </div>
+                <div class="page-item">
+                    <a href="images/img-07.png" target="_blank">
+                        <img src="images/img-07.png" alt="图6" class="page-image">
+                    </a>
+                    <div class="page-caption"><span class="page-num">6</span>地标展示</div>
+                </div>
+                <div class="page-item">
+                    <a href="images/img-08.png" target="_blank">
+                        <img src="images/img-08.png" alt="图7" class="page-image">
+                    </a>
+                    <div class="page-caption"><span class="page-num">7</span>地标展示</div>
+                </div>
+                <div class="page-item">
+                    <a href="images/img-09.png" target="_blank">
+                        <img src="images/img-09.png" alt="图8" class="page-image">
+                    </a>
+                    <div class="page-caption"><span class="page-num">8</span>地标展示</div>
+                </div>
+                <div class="page-item">
+                    <a href="images/img-10.png" target="_blank">
+                        <img src="images/img-10.png" alt="图9" class="page-image">
+                    </a>
+                    <div class="page-caption"><span class="page-num">9</span>地标展示</div>
+                </div>
+                <div class="page-item">
+                    <a href="images/img-11.png" target="_blank">
+                        <img src="images/img-11.png" alt="图10" class="page-image">
+                    </a>
+                    <div class="page-caption"><span class="page-num">10</span>地标展示</div>
+                </div>
+                <div class="page-item">
+                    <a href="images/img-12.png" target="_blank">
+                        <img src="images/img-12.png" alt="图11" class="page-image">
+                    </a>
+                    <div class="page-caption"><span class="page-num">11</span>地标展示</div>
+                </div>
+                <div class="page-item">
+                    <a href="images/img-13.png" target="_blank">
+                        <img src="images/img-13.png" alt="图12" class="page-image">
+                    </a>
+                    <div class="page-caption"><span class="page-num">12</span>地标展示</div>
+                </div>
+            </div>
+        </section>
+        <section class="content-section">
+            <h2 class="section-title"><span class="icon">&#128444;</span>完整截图存档</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 1rem; font-size: 0.875rem;">
+                包含完整页面截图及原始图片。图片为原文内容的完整备份。
+            </p>
+            <div style="background: var(--bg-card); border-radius: 12px; overflow: hidden; max-height: 500px; overflow-y: auto;">
+                <a href="images/screenshot-full.png" target="_blank">
+                    <img src="images/screenshot-full.png" alt="完整页面截图" style="width:100%; display:block;">
+                </a>
+            </div>
+        </section>
+    </article>
+    <footer class="article-footer">
+        <p>由 Alex 自动归档 · 内容仅供学习参考</p>
+        <div class="footer-links">
+            <a href="../../index.html" class="footer-link">&#8592; 返回知识库</a>
+            <a href="https://github.com/X-Intelligence-Labs/CULTURE3D" class="footer-link" target="_blank" rel="noopener">查看原文 &#8599;</a>
         </div>
-        <div class="page-item">
-          <img src="images/img-03.png" alt="配图 2" loading="lazy" />
-        </div>
-        <div class="page-item">
-          <img src="images/img-04.png" alt="配图 3" loading="lazy" />
-        </div>
-        <div class="page-item">
-          <img src="images/img-05.png" alt="配图 4" loading="lazy" />
-        </div>
-        <div class="page-item">
-          <img src="images/img-06.png" alt="配图 5" loading="lazy" />
-        </div>
-        <div class="page-item">
-          <img src="images/img-07.png" alt="配图 6" loading="lazy" />
-        </div>
-        <div class="page-item">
-          <img src="images/img-08.png" alt="配图 7" loading="lazy" />
-        </div>
-        <div class="page-item">
-          <img src="images/img-09.png" alt="配图 8" loading="lazy" />
-        </div>
-        <div class="page-item">
-          <img src="images/img-10.png" alt="配图 9" loading="lazy" />
-        </div>
-        <div class="page-item">
-          <img src="images/img-11.png" alt="配图 10" loading="lazy" />
-        </div>
-        <div class="page-item">
-          <img src="images/img-12.png" alt="配图 11" loading="lazy" />
-        </div>
-        <div class="page-item">
-          <img src="images/img-13.png" alt="配图 12" loading="lazy" />
-        </div>
-      </div>
-    </div>
-
-    <div class="section">
-      <h2 class="section-title">📷 截图存档</h2>
-      <div class="screenshot-wrap">
-        <img src="images/screenshot-full.png" alt="全文截图" loading="lazy" />
-        <div class="screenshot-caption">☠️ 全文截图</div>
-      </div>
-
-    <footer>
-      <p>Alex 知识库 &middot; ARC-20260504-014 &middot; GitHub</p>
-      <p style="margin-top:4px"><a href="https://github.com/X-Intelligence-Labs/CULTURE3D" target="_blank" rel="noopener">🔗 原文链接</a></p>
-      <p style="margin-top:4px">归档日期：2026-05-04</p>
     </footer>
-  </div>
 </body>
 </html>
