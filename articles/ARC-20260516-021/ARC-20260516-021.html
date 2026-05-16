@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>提速400倍！CNN+PINN登上中科院一区TOP！ | Alex 知识库</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg-primary:#0f172a;--bg-secondary:#1e293b;--bg-card:#334155;--text-primary:#f8fafc;--text-secondary:#94a3b8;--accent:#3b82f6;--accent-hover:#2563eb;--border:#475569;--success:#10b981}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter','Noto Sans SC',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg-primary);color:var(--text-primary);line-height:1.7}
+nav{background:var(--bg-secondary);border-bottom:1px solid var(--border);padding:1rem 0;position:sticky;top:0;z-index:100}
+.nav-content{max-width:1200px;margin:0 auto;padding:0 1.5rem;display:flex;justify-content:space-between;align-items:center}
+.back-link{display:flex;align-items:center;gap:0.5rem;color:var(--text-secondary);text-decoration:none;font-size:0.875rem;transition:color 0.3s}
+.back-link:hover{color:var(--accent)}
+.archive-badge{display:flex;align-items:center;gap:0.5rem;padding:0.5rem 1rem;background:rgba(16,185,129,0.1);border:1px solid var(--success);border-radius:20px;color:var(--success);font-size:0.75rem;font-weight:500}
+.article-header{max-width:1200px;margin:0 auto;padding:3rem 1.5rem 2rem}
+.meta-bar{display:flex;flex-wrap:wrap;gap:1rem;margin-bottom:1.5rem}
+.meta-item{display:flex;align-items:center;gap:0.5rem;font-size:0.875rem;color:var(--text-secondary)}
+.platform-tag{padding:0.25rem 0.75rem;background:rgba(59,130,246,0.1);color:var(--accent);border-radius:4px;font-weight:500}
+.article-title{font-size:2rem;font-weight:700;line-height:1.3;margin-bottom:1.5rem}
+.article-tags{display:flex;flex-wrap:wrap;gap:0.5rem}
+.article-tag{padding:0.375rem 0.75rem;background:var(--bg-card);border-radius:20px;font-size:0.75rem;color:var(--text-secondary)}
+.article-content{max-width:1200px;margin:0 auto;padding:0 1.5rem 3rem}
+.content-section{background:var(--bg-secondary);border:1px solid var(--border);border-radius:16px;padding:2rem;margin-bottom:1.5rem}
+.section-title{font-size:1.25rem;font-weight:600;margin-bottom:1.25rem;display:flex;align-items:center;gap:0.5rem}
+.section-title .icon{font-size:1.5rem}
+.info-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1rem));gap:1rem}
+.info-item{display:flex;flex-direction:column;gap:0.25rem}
+.info-label{font-size:0.75rem;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.05em}
+.info-value{font-size:0.9375rem;color:var(--text-primary)}
+.info-value a{color:var(--accent);text-decoration:none}
+.info-value a:hover{text-decoration:underline}
+.content-body{font-size:1rem;line-height:1.8}
+.content-body h3{font-size:1.25rem;font-weight:600;margin:2rem 0 1rem;color:var(--accent)}
+.content-body h3:first-child{margin-top:0}
+.content-body p{margin-bottom:1rem;color:var(--text-secondary)}
+.content-body strong{color:var(--text-primary)}
+.content-body ul,.content-body ol{margin:1rem 0;padding-left:1.5rem;color:var(--text-secondary)}
+.content-body li{margin-bottom:0.5rem}
+.gallery-section{background:var(--bg-secondary);border:1px solid var(--border);border-radius:16px;padding:2rem;margin-bottom:1.5rem}
+.gallery-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem}
+.gallery-count{font-size:0.875rem;color:var(--text-secondary)}
+.page-gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem}
+.page-item{background:var(--bg-card);border-radius:12px;overflow:hidden}
+.page-image{width:100%;height:auto;display:block;cursor:zoom-in;transition:transform 0.3s}
+.page-image:hover{transform:scale(1.02)}
+.page-caption{padding:1rem;font-size:0.875rem;color:var(--text-secondary);text-align:center}
+.page-num{display:inline-block;background:var(--accent);color:white;width:24px;height:24px;border-radius:50%;text-align:center;line-height:24px;font-size:0.75rem;font-weight:600;margin-right:0.5rem}
+.article-footer{max-width:1200px;margin:0 auto;padding:2rem 1.5rem;border-top:1px solid var(--border);text-align:center;color:var(--text-secondary);font-size:0.875rem}
+.footer-links{display:flex;justify-content:center;gap:1rem;margin-top:1rem;flex-wrap:wrap}
+.footer-link{padding:0.5rem 1rem;background:var(--bg-card);border-radius:8px;color:var(--text-secondary);text-decoration:none;font-size:0.875rem;transition:all 0.3s}
+.footer-link:hover{background:var(--accent);color:white}
+@media(max-width:768px){.article-title{font-size:1.5rem}.content-section{padding:1.5rem}.info-grid{grid-template-columns:1fr}.page-gallery{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav>
+<div class="nav-content">
+<a href="../../index.html" class="back-link"><span>&#8592;</span><span>返回知识库</span></a>
+<div class="archive-badge"><span>&#10003;</span><span>已完整归档 · ARC-20260516-021</span></div>
+</div>
+</nav>
+<header class="article-header">
+<div class="meta-bar">
+<span class="platform-tag">&#128241; 微信公众号</span>
+<span class="meta-item"><span>&#128100;</span><span>科研月野兔</span></span>
+<span class="meta-item"><span>&#128197;</span><span>2026-05-16 发布</span></span>
+<span class="meta-item"><span>&#128339;</span><span>2026-05-16 归档</span></span>
+</div>
+<h1 class="article-title">提速400倍！CNN+PINN登上中科院一区TOP！</h1>
+<div class="article-tags">
+<span class="article-tag">CNN</span>
+<span class="article-tag">PINN</span>
+<span class="article-tag">Physics-Informed Neural Networks</span>
+<span class="article-tag">Deep Learning</span>
+<span class="article-tag">PDE Solving</span>
+<span class="article-tag">AI+Science</span>
+</div>
+</header>
+<article class="article-content">
+<section class="content-section">
+<h2 class="section-title"><span class="icon">&#128209;</span>来源信息</h2>
+<div class="info-grid">
+<div class="info-item"><span class="info-label">原文链接</span><span class="info-value"><a href="https://mp.weixin.qq.com/s/88FtslfO5UZF9pWAQpoKIw" target="_blank" rel="noopener">查看原文</a></span></div>
+<div class="info-item"><span class="info-label">文章ID</span><span class="info-value">ARC-20260516-021</span></div>
+<div class="info-item"><span class="info-label">抓取状态</span><span class="info-value"><span style="color:var(--success)">&#10003; 完整归档</span></span></div>
+</div>
+</section>
+<section class="content-section">
+<h2 class="section-title"><span class="icon">&#128221;</span>核心内容摘要</h2>
+<div class="content-body">
+<h3>课题名称</h3>
+<p><strong>提速400倍！CNN+PINN登上中科院一区TOP！</strong></p>
+<h3>研究背景与痛点</h3>
+<p>物理信息神经网络（PINN）在求解偏微分方程方面表现出色，但训练速度慢、计算开销大是主要瓶颈。尤其在处理相场断裂、流体力学、微电网调度等复杂物理系统时，传统PINN需要大量迭代求解，计算成本高昂，难以满足工程实时性需求。</p>
+<h3>解决方案</h3>
+<p>本文系统梳理了CNN与PINN融合的最新研究进展，重点介绍9篇代表性工作（含顶刊ACHA、ICLR成果）：</p>
+<ol>
+<li><strong>IFENN</strong>（集成有限元神经网络）：端到端学习相场断裂演化，支持广义几何与荷载工况</li>
+<li><strong>自动化PINN设计框架</strong>：自动配置网络架构与物理约束，无需人工试错</li>
+<li><strong>物理守恒型CNN</strong>（Navier-Stokes求解器）：嵌入质量/动量守恒约束，无监督高精度流场重建</li>
+<li><strong>微电网经济调度CNN-PINN</strong>：融合功率平衡与机组约束，快速求解最优调度方案</li>
+</ol>
+<h3>科学与工程价值</h3>
+<p>CNN+PINN融合方法将计算速度提升最高400倍，突破传统PINN的工程应用瓶颈。该方向兼具学术前沿性与工程实用性，为流体仿真、结构断裂分析、能源调度等场景提供了高效率、物理可解释的智能求解新范式。</p>
+</div>
+</section>
+<section class="gallery-section">
+<div class="gallery-header">
+<h2 class="section-title" style="margin-bottom:0"><span class="icon">&#128196;</span>原文配图</h2>
+<span class="gallery-count">共8张 · 含论文架构图、实验结果</span>
+</div>
+<div class="page-gallery">
+<div class="page-item"><a href="images/img-01.jpg" target="_blank"><img src="images/img-01.jpg" alt="img-01" class="page-image"></a><div class="page-caption"><span class="page-num">1</span>配图 1</div></div>
+<div class="page-item"><a href="images/img-02.jpg" target="_blank"><img src="images/img-02.jpg" alt="img-02" class="page-image"></a><div class="page-caption"><span class="page-num">2</span>配图 2</div></div>
+<div class="page-item"><a href="images/img-03.jpg" target="_blank"><img src="images/img-03.jpg" alt="img-03" class="page-image"></a><div class="page-caption"><span class="page-num">3</span>配图 3</div></div>
+<div class="page-item"><a href="images/img-04.jpg" target="_blank"><img src="images/img-04.jpg" alt="img-04" class="page-image"></a><div class="page-caption"><span class="page-num">4</span>配图 4</div></div>
+<div class="page-item"><a href="images/img-05.jpg" target="_blank"><img src="images/img-05.jpg" alt="img-05" class="page-image"></a><div class="page-caption"><span class="page-num">5</span>配图 5</div></div>
+<div class="page-item"><a href="images/img-06.jpg" target="_blank"><img src="images/img-06.jpg" alt="img-06" class="page-image"></a><div class="page-caption"><span class="page-num">6</span>配图 6</div></div>
+<div class="page-item"><a href="images/img-07.jpg" target="_blank"><img src="images/img-07.jpg" alt="img-07" class="page-image"></a><div class="page-caption"><span class="page-num">7</span>配图 7</div></div>
+<div class="page-item"><a href="images/img-08.jpg" target="_blank"><img src="images/img-08.jpg" alt="img-08" class="page-image"></a><div class="page-caption"><span class="page-num">8</span>配图 8</div></div>
+</div>
+</section>
+<section class="content-section">
+<h2 class="section-title"><span class="icon">&#128444;</span>完整截图存档</h2>
+<p style="color:var(--text-secondary);margin-bottom:1rem;font-size:0.875rem">包含完整页面截图。图片为原文内容的完整备份。</p>
+<div style="background:var(--bg-card);border-radius:12px;overflow:hidden;max-height:500px;overflow-y:auto">
+<a href="images/screenshot-full.png" target="_blank"><img src="images/screenshot-full.png" alt="完整页面截图" style="width:100%;display:block"></a>
+</div>
+</section>
+</article>
+<footer class="article-footer">
+<p>由 Alex 自动归档 · 内容仅供学习参考</p>
+<div class="footer-links">
+<a href="../../index.html" class="footer-link">&#8592; 返回知识库</a>
+<a href="https://mp.weixin.qq.com/s/88FtslfO5UZF9pWAQpoKIw" class="footer-link" target="_blank" rel="noopener">查看原文 &#8599;</a>
+</div>
+</footer>
+</body>
+</html>
